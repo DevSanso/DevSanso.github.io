@@ -1,8 +1,8 @@
 ---
 title: "비교연산자가 포함된 if문을 비트연산으로 변화"
 date: 2021-07-21T21:04:42+09:00
-draft: true
-tags : [알고리즘,최적화]
+draft: false
+tags : [tip,최적화]
 ---
 
 여가시간에 프로그래밍 정보를 얻어보고자 [stackoverflow](https://stackoverflow.com/)에서 상당히 좋은글을 보게 되었다.
