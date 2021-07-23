@@ -1,8 +1,42 @@
 baseURL = "http://example.org/"
 languageCode = "en-us"
-title = "My New Hugo Site"
-theme = "mini"
+title = "SansoNoia Blog"
+theme = "PaperMod"
+
+
+
+
+[[menu.main]]
+identifier = "tags"
+name = "tags"
+url = "/tags/"
+weight = 20
+
+[[menu.main]]
+identifier = "archives"
+name = "archives"
+url = "/archives/"
+weight = 20
+
+[[menu.main]]
+identifier = "about"
+name = "about"
+url = "/about/"
+weight = 20
+
 
 
 [taxonomise]
     tag = "tags"
+
+
+
+[params.homeInfoParams]
+Title = "Hi, Welcome My Blog"
+Content = "Can be Info, links, about..."
+
+
+
+
+[outputs]
+home = [ "HTML", "RSS", "JSON" ]
