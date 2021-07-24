@@ -1,14 +1,14 @@
 ---
 title: "1-이름 규칙"
 date: 2021-07-24T12:36:38+09:00
-draft: true
+draft: false
 tags : [julia,프로그래밍 언어,기초]
 ---
 
 julia 공식 매뉴얼에서 변수 관련 문서를 보고 코드를 작성하면서 몇가지 특징을 알게 되었다.
 
 첫째로 요즘 언어들도 갖고있는 특성이지만 유니코드를 지원하여, 한글로 변수명이 가능하다는것과 심지어 특수기호로도 변수명이 되는걸 알수있다.
-![exmaple](../../../static/posts/julia/1/unicode_name.PNG)
+![exmaple](/posts/julia/1/unicode_name.PNG)
 
 그렇다고 해서 한글 또는 특수기호로 변수명을 작성해서 사용하는건 비추천한다, 왜냐하면 julia는 이름 규칙이 따로 존재하기 때문이다.
 
