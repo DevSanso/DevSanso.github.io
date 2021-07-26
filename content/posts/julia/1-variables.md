@@ -1,5 +1,5 @@
 ---
-title: "julia-이름 규칙"
+title: "julia-'이름 규칙'"
 date: 2021-07-24T12:36:38+09:00
 draft: false
 tags : [julia,프로그래밍 언어,기초]
