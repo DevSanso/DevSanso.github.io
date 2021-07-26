@@ -1,5 +1,5 @@
 ---
-title: "0-'julia 이란?'"
+title: "julia-'julia 이란?'"
 date: 2021-07-23T18:39:55+09:00
 draft: false
 tags : [julia,프로그래밍 언어,기초]
