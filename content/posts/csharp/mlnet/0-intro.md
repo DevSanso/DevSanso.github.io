@@ -1,7 +1,8 @@
 ---
-title: "mlnet"
+title: "0-'mlnet 첫 실행'"
 date: 2021-08-02T23:55:26+09:00
-draft: true
+draft: false
+tags : [csharp,프로그래밍 언어,mlnet,기계 학습]
 ---
 
 훗날 학교에서 c# 프로그래밍을 하는 과목이 있다고 들어, 복습 겸 공부해볼 라이브러리를 찾는도중, ML.NET이라는 net core에서 작동하는 기계학습 라이브러리가 있다고 해서 알아볼라고 한다.
@@ -86,6 +87,12 @@ dotnet add package Microsoft.ML
 # 실행결과
 
 
-![result](posts/csharp/mlnet/0/result.png)
+![result](/posts/csharp/mlnet/0/result.png)
+다행히 잘 작동 되어서 다행이다.  
+앞으로 해당 라이브러리도 가끔 시간내며 공부할 생각이다.  
 
+
+##### 참고
+1. [net core site](https://dotnet.microsoft.com/)
+2. [mlnet 자습서](https://docs.microsoft.com/ko-kr/dotnet/machine-learning/tutorials/)
 
