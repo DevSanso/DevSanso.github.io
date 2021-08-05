@@ -1,5 +1,5 @@
 ---
-title: "0-'mlnet 첫 실행'"
+title: "c#-'mlnet 첫 실행'"
 date: 2021-08-02T23:55:26+09:00
 draft: false
 tags : [csharp,프로그래밍 언어,mlnet,기계 학습]
