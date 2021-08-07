@@ -35,9 +35,9 @@ TrainTestSplit함수를 통해 TrainTestData를 생성후 해당 값을 리턴�
         //완성본
         public static TrainTestData LoadData(MLContext mlContext)
         {
-            IDataView dataView = mlContext.Data.LoadFromTextFile<SentimentData>(_dataPath, hasHeader: false);
-            TrainTestData splitDataView = mlContext.Data.TrainTestSplit(dataView, testFraction: 0.2);
-            return splitDataView;
+            IDataView dataView = mlContext.Data.LoadFromTextFile<SentimentData>(_dataPath, hasHeader: false); //데이터를 로드합니다
+            TrainTestData splitDataView = mlContext.Data.TrainTestSplit(dataView, testFraction: 0.2); // 로드된 데이터 세트를 학습 및 테스트 세트로 분할합니다.
+            return splitDataView; // 분할된 학습 및 테스트 데이터 세트를 반환합니다.
         }
 ```
 이렇게 LoadData함수를 살펴보았다. 그다음은 모델 빌드 및 학습하는 BuildAndTrainModel 함수를 알아볼 생각이다.
