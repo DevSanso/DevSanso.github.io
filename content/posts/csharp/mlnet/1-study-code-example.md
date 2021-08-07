@@ -33,8 +33,26 @@ using static Microsoft.ML.DataOperationsCatalog;
 ###### 참고
 [using 정적 지시문](https://docs.microsoft.com/ko-kr/dotnet/csharp/language-reference/keywords/using-static)
 
-그리고 해당 예제소스를 따라가다보면 정적 변수랑, 메인문이 이렇게 작성되있을거다.
+그리고 해당 예제소스를 따라가다보면 정적 변수랑, 메인문,클래스가 이렇게 작성되있을거다.
 ```C#
+
+    class SentimentData
+    {
+        [LoadColumn(0)]
+        public string SentimentText;
+        [LoadColumn(1),ColumnName("Label")]
+        public bool Sentiment;
+    }
+
+    class SentimentPrediction : SentimentData
+    {
+        [ColumnName("PredictedLabel")]
+        public bool Prediction{get;set;}
+        public float Probability {get;set;}
+        public float Score {get;set;}
+    }
+
+
         static readonly string _dataPath = Path.Combine(Environment.CurrentDirectory, 
         "Data", "yelp_labelled.txt");
 
