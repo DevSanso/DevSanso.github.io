@@ -1,5 +1,5 @@
 ---
-title: "julia='문자열 인텍스'"
+title: "julia-'인텍스'"
 date: 2021-08-02T11:18:46+09:00
 draft: true
 ---
