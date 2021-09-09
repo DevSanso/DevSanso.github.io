@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Sunken Ahn Blog</title>
-    <link>http://example.org/</link>
+    <link>https://devsanso.github.io/Sunken.github.io/</link>
     <description>Recent content on Sunken Ahn Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 10 Sep 2021 00:41:00 +0900</lastBuildDate><atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 10 Sep 2021 00:41:00 +0900</lastBuildDate><atom:link href="https://devsanso.github.io/Sunken.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>await와 then의 작동 차이</title>
-      <link>http://example.org/posts/javascript/difference_between_await_and_then/</link>
+      <link>https://devsanso.github.io/Sunken.github.io/posts/javascript/difference_between_await_and_then/</link>
       <pubDate>Fri, 10 Sep 2021 00:41:00 +0900</pubDate>
       
-      <guid>http://example.org/posts/javascript/difference_between_await_and_then/</guid>
+      <guid>https://devsanso.github.io/Sunken.github.io/posts/javascript/difference_between_await_and_then/</guid>
       <description>자바스크립트를 공부하다보면 비동기 함수 사용이라고 setTimeout , Promise 그리고 async과 await를 배우게 된다. 허나 이러한 사용법이 있다고 하고, 어떤 상황에 어떻게 써야하는지는 자세히 모르는경우 가 많았고, 그리고 이번에 이 궁금점을 풀기위해 코드를 작성하다가 알게된 내용을 적어볼려고한다.
 보통 자바스크립트는 싱글 스레드이기 때문에 비동기api를 이용하여 멀티스레딩을 한다고 이야기를 한다. 결국 비동기로 병렬처리를 하는것처럼 보여도 결국 싱글스레드에서 모든일을 한다는것이다, 그럼 만약 여러 비동기 함수안에 처리시간이 많은 루프가 있으면 어떻게 될까?
 해당 궁금점을 알기위해 코드를 작성하기로 마음먹고, 다음과 같은 규칙과 목표를 세웠다.</description>
@@ -20,20 +20,20 @@
     
     <item>
       <title>julia-&#39;dot 연산자&#39;</title>
-      <link>http://example.org/posts/julia/2-dot_operator/</link>
+      <link>https://devsanso.github.io/Sunken.github.io/posts/julia/2-dot_operator/</link>
       <pubDate>Mon, 26 Jul 2021 20:24:39 +0900</pubDate>
       
-      <guid>http://example.org/posts/julia/2-dot_operator/</guid>
+      <guid>https://devsanso.github.io/Sunken.github.io/posts/julia/2-dot_operator/</guid>
       <description>julia에 dot 연산자라고, 배열안의 요소별로 각각 연산해주는것이 있다. 예시로 백터를 생성후 요소값들을 각각 하나씩 더하고 싶을때 보통은 for문등 방법을 사용하는게 보통이다.
 julia&amp;gt; x = [1,2,3,4,5] #output #5-element Vector{Int64}: # 1 # 2 # 3 # 4 # 5 julia&amp;gt; i = 1 julia&amp;gt; while i &amp;lt;= 5 x[i] = x[i]+2 global i += 1 end julia&amp;gt; x #output #5-element Vector{Int64}: # 3 # 4 # 5 # 6 # 7 허나 julia에서는 dot 연산자를 사용해 한줄코드로 간단하게 사용할수 있다.</description>
     </item>
     
     <item>
       <title>julia-&#39;이름 규칙&#39;</title>
-      <link>http://example.org/posts/julia/1-variables/</link>
+      <link>https://devsanso.github.io/Sunken.github.io/posts/julia/1-variables/</link>
       <pubDate>Sat, 24 Jul 2021 12:36:38 +0900</pubDate>
       
-      <guid>http://example.org/posts/julia/1-variables/</guid>
+      <guid>https://devsanso.github.io/Sunken.github.io/posts/julia/1-variables/</guid>
       <description>julia 공식 매뉴얼에서 변수 관련 문서를 보고 코드를 작성하면서 몇가지 특징을 알게 되었다.
 첫째로 요즘 언어들도 갖고있는 특성이지만 유니코드를 지원하여, 한글로 변수명이 가능하다는것과 심지어 특수기호로도 변수명이 되는걸 알수있다. 그렇다고 해서 한글 또는 특수기호로 변수명을 작성해서 사용하는건 비추천한다, 왜냐하면 julia는 이름 규칙이 따로 존재하기 때문이다.
 julia 명명 규칙 (발번역 주의)  변수명은 소문자로 한다 #example name = &amp;quot;Sunken Ahn&amp;quot;  단구 구분은 언더바(_)로 구분, 단 이름이 읽기 어려운게 아니면 사용은 자세 #example my_name = &amp;quot;Sunken Ahn&amp;quot;  모듈,타입은 단어 시작을 대문자로, 단어구분도 단어 첫글자를 대문자로 하여 구분 #example struct Foo bar baz end foo = Foo(1,2)  함수, 매코르는 언더바(_)없이 소문자 #example function f(x,y) x + y end  인수로 쓰는 함수(&amp;ldquo;mutating&amp;rdquo; or &amp;ldquo;in-place&amp;rdquo; functions)는 이름이 !</description>
@@ -41,20 +41,20 @@ julia 명명 규칙 (발번역 주의)  변수명은 소문자로 한다 #exampl
     
     <item>
       <title>julia-&#39;julia 이란?&#39;</title>
-      <link>http://example.org/posts/julia/0-intro/</link>
+      <link>https://devsanso.github.io/Sunken.github.io/posts/julia/0-intro/</link>
       <pubDate>Fri, 23 Jul 2021 18:39:55 +0900</pubDate>
       
-      <guid>http://example.org/posts/julia/0-intro/</guid>
+      <guid>https://devsanso.github.io/Sunken.github.io/posts/julia/0-intro/</guid>
       <description>최근들어 알고리즘, 영어, 수치 해석, 정보 처리 기사 공부들이 하기 힘들어서 구글링을 하며 시간을 보내던중, 스택오버플로우 2020 survey에서 개발하고 있고, 또는 개발하고 싶은 언어 상위권을 보던도중 julia라는 새로보는 언어가 있는걸 알게되고, 요즘 공부도 별로 안되니 취미로써(?) 해당 언어를 배우기로 결정하였다.
 julia 언어 해당 언어에 대해 알아본 결과 수치해석에 사용하는 프로그래밍 언어로 보인다. 또한 공식 사이트에서 해당 언어의 장점이 설명되있는데 부족한 영어실력으로 발변역을 해본결과..  Fast : 높은 성능에 맞쳐 디자인 하였으며, LLVM를 통해 효과적으로 멀티 플랫품에서 네이티브 코드로 컴파일 하였습니다.</description>
     </item>
     
     <item>
       <title>비교연산자가 포함된 if문을 비트연산으로 변화</title>
-      <link>http://example.org/posts/optimizing_the_if_less_operator/</link>
+      <link>https://devsanso.github.io/Sunken.github.io/posts/optimizing_the_if_less_operator/</link>
       <pubDate>Wed, 21 Jul 2021 21:04:42 +0900</pubDate>
       
-      <guid>http://example.org/posts/optimizing_the_if_less_operator/</guid>
+      <guid>https://devsanso.github.io/Sunken.github.io/posts/optimizing_the_if_less_operator/</guid>
       <description>여가시간에 프로그래밍 정보를 얻어보고자 stackoverflow에서 상당히 좋은글을 보게 되었다.
 보통 코딩을 할때 &amp;ldquo;n개의 정수배열에서 y 보다 작거나 같은 Xn을 서로 합하여라&amp;rdquo; 라는 문제가 있을경우 보통 이렇게 코드를 작성하게 된다.
 //cpp 예시코드 for(int i;i&amp;lt;=array_size;i++) { int x = array[i]; if(x &amp;lt;= y) { sum += x; } } 이렇게 해당 소스코드를 작성할것이다.
@@ -63,10 +63,10 @@ julia 언어 해당 언어에 대해 알아본 결과 수치해석에 사용하�
     
     <item>
       <title></title>
-      <link>http://example.org/about/</link>
+      <link>https://devsanso.github.io/Sunken.github.io/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/about/</guid>
+      <guid>https://devsanso.github.io/Sunken.github.io/about/</guid>
       <description></description>
     </item>
     

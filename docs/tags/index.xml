@@ -2,62 +2,62 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Tags on Sunken Ahn Blog</title>
-    <link>http://example.org/tags/</link>
+    <link>https://devsanso.github.io/Sunken.github.io/tags/</link>
     <description>Recent content in Tags on Sunken Ahn Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 10 Sep 2021 00:41:00 +0900</lastBuildDate><atom:link href="http://example.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 10 Sep 2021 00:41:00 +0900</lastBuildDate><atom:link href="https://devsanso.github.io/Sunken.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>javascript</title>
-      <link>http://example.org/tags/javascript/</link>
+      <link>https://devsanso.github.io/Sunken.github.io/tags/javascript/</link>
       <pubDate>Fri, 10 Sep 2021 00:41:00 +0900</pubDate>
       
-      <guid>http://example.org/tags/javascript/</guid>
+      <guid>https://devsanso.github.io/Sunken.github.io/tags/javascript/</guid>
       <description></description>
     </item>
     
     <item>
       <title>julia</title>
-      <link>http://example.org/tags/julia/</link>
+      <link>https://devsanso.github.io/Sunken.github.io/tags/julia/</link>
       <pubDate>Mon, 26 Jul 2021 20:24:39 +0900</pubDate>
       
-      <guid>http://example.org/tags/julia/</guid>
+      <guid>https://devsanso.github.io/Sunken.github.io/tags/julia/</guid>
       <description></description>
     </item>
     
     <item>
       <title>기초</title>
-      <link>http://example.org/tags/%EA%B8%B0%EC%B4%88/</link>
+      <link>https://devsanso.github.io/Sunken.github.io/tags/%EA%B8%B0%EC%B4%88/</link>
       <pubDate>Mon, 26 Jul 2021 20:24:39 +0900</pubDate>
       
-      <guid>http://example.org/tags/%EA%B8%B0%EC%B4%88/</guid>
+      <guid>https://devsanso.github.io/Sunken.github.io/tags/%EA%B8%B0%EC%B4%88/</guid>
       <description></description>
     </item>
     
     <item>
       <title>프로그래밍 언어</title>
-      <link>http://example.org/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EC%96%B8%EC%96%B4/</link>
+      <link>https://devsanso.github.io/Sunken.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EC%96%B8%EC%96%B4/</link>
       <pubDate>Mon, 26 Jul 2021 20:24:39 +0900</pubDate>
       
-      <guid>http://example.org/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EC%96%B8%EC%96%B4/</guid>
+      <guid>https://devsanso.github.io/Sunken.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EC%96%B8%EC%96%B4/</guid>
       <description></description>
     </item>
     
     <item>
       <title>tip</title>
-      <link>http://example.org/tags/tip/</link>
+      <link>https://devsanso.github.io/Sunken.github.io/tags/tip/</link>
       <pubDate>Wed, 21 Jul 2021 21:04:42 +0900</pubDate>
       
-      <guid>http://example.org/tags/tip/</guid>
+      <guid>https://devsanso.github.io/Sunken.github.io/tags/tip/</guid>
       <description></description>
     </item>
     
     <item>
       <title>최적화</title>
-      <link>http://example.org/tags/%EC%B5%9C%EC%A0%81%ED%99%94/</link>
+      <link>https://devsanso.github.io/Sunken.github.io/tags/%EC%B5%9C%EC%A0%81%ED%99%94/</link>
       <pubDate>Wed, 21 Jul 2021 21:04:42 +0900</pubDate>
       
-      <guid>http://example.org/tags/%EC%B5%9C%EC%A0%81%ED%99%94/</guid>
+      <guid>https://devsanso.github.io/Sunken.github.io/tags/%EC%B5%9C%EC%A0%81%ED%99%94/</guid>
       <description></description>
     </item>
     

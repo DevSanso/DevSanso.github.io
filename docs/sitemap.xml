@@ -2,53 +2,53 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://example.org/posts/javascript/difference_between_await_and_then/</loc>
+    <loc>https://devsanso.github.io/Sunken.github.io/posts/javascript/difference_between_await_and_then/</loc>
     <lastmod>2021-09-10T00:41:00+09:00</lastmod>
   </url><url>
-    <loc>http://example.org/tags/javascript/</loc>
+    <loc>https://devsanso.github.io/Sunken.github.io/tags/javascript/</loc>
     <lastmod>2021-09-10T00:41:00+09:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/</loc>
+    <loc>https://devsanso.github.io/Sunken.github.io/posts/</loc>
     <lastmod>2021-09-10T00:41:00+09:00</lastmod>
   </url><url>
-    <loc>http://example.org/</loc>
+    <loc>https://devsanso.github.io/Sunken.github.io/</loc>
     <lastmod>2021-09-10T00:41:00+09:00</lastmod>
   </url><url>
-    <loc>http://example.org/tags/</loc>
+    <loc>https://devsanso.github.io/Sunken.github.io/tags/</loc>
     <lastmod>2021-09-10T00:41:00+09:00</lastmod>
   </url><url>
-    <loc>http://example.org/tags/julia/</loc>
+    <loc>https://devsanso.github.io/Sunken.github.io/tags/julia/</loc>
     <lastmod>2021-07-26T20:24:39+09:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/julia/2-dot_operator/</loc>
+    <loc>https://devsanso.github.io/Sunken.github.io/posts/julia/2-dot_operator/</loc>
     <lastmod>2021-07-26T20:24:39+09:00</lastmod>
   </url><url>
-    <loc>http://example.org/tags/%EA%B8%B0%EC%B4%88/</loc>
+    <loc>https://devsanso.github.io/Sunken.github.io/tags/%EA%B8%B0%EC%B4%88/</loc>
     <lastmod>2021-07-26T20:24:39+09:00</lastmod>
   </url><url>
-    <loc>http://example.org/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EC%96%B8%EC%96%B4/</loc>
+    <loc>https://devsanso.github.io/Sunken.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EC%96%B8%EC%96%B4/</loc>
     <lastmod>2021-07-26T20:24:39+09:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/julia/1-variables/</loc>
+    <loc>https://devsanso.github.io/Sunken.github.io/posts/julia/1-variables/</loc>
     <lastmod>2021-07-24T12:36:38+09:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/julia/0-intro/</loc>
+    <loc>https://devsanso.github.io/Sunken.github.io/posts/julia/0-intro/</loc>
     <lastmod>2021-07-23T18:39:55+09:00</lastmod>
   </url><url>
-    <loc>http://example.org/tags/tip/</loc>
+    <loc>https://devsanso.github.io/Sunken.github.io/tags/tip/</loc>
     <lastmod>2021-07-21T21:04:42+09:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/optimizing_the_if_less_operator/</loc>
+    <loc>https://devsanso.github.io/Sunken.github.io/posts/optimizing_the_if_less_operator/</loc>
     <lastmod>2021-07-21T21:04:42+09:00</lastmod>
   </url><url>
-    <loc>http://example.org/tags/%EC%B5%9C%EC%A0%81%ED%99%94/</loc>
+    <loc>https://devsanso.github.io/Sunken.github.io/tags/%EC%B5%9C%EC%A0%81%ED%99%94/</loc>
     <lastmod>2021-07-21T21:04:42+09:00</lastmod>
   </url><url>
-    <loc>http://example.org/about/</loc>
+    <loc>https://devsanso.github.io/Sunken.github.io/about/</loc>
     <priority>0</priority>
   </url><url>
-    <loc>http://example.org/archives/</loc>
+    <loc>https://devsanso.github.io/Sunken.github.io/archives/</loc>
   </url><url>
-    <loc>http://example.org/categories/</loc>
+    <loc>https://devsanso.github.io/Sunken.github.io/categories/</loc>
   </url>
 </urlset>
