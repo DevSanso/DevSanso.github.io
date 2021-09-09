@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>julia-&#39;이름 규칙&#39; | Sunken Ahn Blog</title>
+<meta name="keywords" content="julia, 프로그래밍 언어, 기초" />
+<meta name="description" content="julia 공식 매뉴얼에서 변수 관련 문서를 보고 코드를 작성하면서 몇가지 특징을 알게 되었다.
+첫째로 요즘 언어들도 갖고있는 특성이지만 유니코드를 지원하여, 한글로 변수명이 가능하다는것과 심지어 특수기호로도 변수명이 되는걸 알수있다. 그렇다고 해서 한글 또는 특수기호로 변수명을 작성해서 사용하는건 비추천한다, 왜냐하면 julia는 이름 규칙이 따로 존재하기 때문이다.
+julia 명명 규칙 (발번역 주의)  변수명은 소문자로 한다 #example name = &quot;Sunken Ahn&quot;  단구 구분은 언더바(_)로 구분, 단 이름이 읽기 어려운게 아니면 사용은 자세 #example my_name = &quot;Sunken Ahn&quot;  모듈,타입은 단어 시작을 대문자로, 단어구분도 단어 첫글자를 대문자로 하여 구분 #example struct Foo bar baz end foo = Foo(1,2)  함수, 매코르는 언더바(_)없이 소문자 #example function f(x,y) x &#43; y end  인수로 쓰는 함수(&ldquo;mutating&rdquo; or &ldquo;in-place&rdquo; functions)는 이름이 !">
+<meta name="author" content="">
+<link rel="canonical" href="http://example.org/posts/julia/1-variables/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.35cd0f65a15cafa92372b8313deef5960aae04b90ad722f2bbf509eb0468137e.css" integrity="sha256-Nc0PZaFcr6kjcrgxPe71lgquBLkK1yLyu/UJ6wRoE34=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="http://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="http://example.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.87.0" />
+<meta property="og:title" content="julia-&#39;이름 규칙&#39;" />
+<meta property="og:description" content="julia 공식 매뉴얼에서 변수 관련 문서를 보고 코드를 작성하면서 몇가지 특징을 알게 되었다.
+첫째로 요즘 언어들도 갖고있는 특성이지만 유니코드를 지원하여, 한글로 변수명이 가능하다는것과 심지어 특수기호로도 변수명이 되는걸 알수있다. 그렇다고 해서 한글 또는 특수기호로 변수명을 작성해서 사용하는건 비추천한다, 왜냐하면 julia는 이름 규칙이 따로 존재하기 때문이다.
+julia 명명 규칙 (발번역 주의)  변수명은 소문자로 한다 #example name = &quot;Sunken Ahn&quot;  단구 구분은 언더바(_)로 구분, 단 이름이 읽기 어려운게 아니면 사용은 자세 #example my_name = &quot;Sunken Ahn&quot;  모듈,타입은 단어 시작을 대문자로, 단어구분도 단어 첫글자를 대문자로 하여 구분 #example struct Foo bar baz end foo = Foo(1,2)  함수, 매코르는 언더바(_)없이 소문자 #example function f(x,y) x &#43; y end  인수로 쓰는 함수(&ldquo;mutating&rdquo; or &ldquo;in-place&rdquo; functions)는 이름이 !" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/julia/1-variables/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-07-24T12:36:38&#43;09:00" />
+<meta property="article:modified_time" content="2021-07-24T12:36:38&#43;09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="julia-&#39;이름 규칙&#39;"/>
+<meta name="twitter:description" content="julia 공식 매뉴얼에서 변수 관련 문서를 보고 코드를 작성하면서 몇가지 특징을 알게 되었다.
+첫째로 요즘 언어들도 갖고있는 특성이지만 유니코드를 지원하여, 한글로 변수명이 가능하다는것과 심지어 특수기호로도 변수명이 되는걸 알수있다. 그렇다고 해서 한글 또는 특수기호로 변수명을 작성해서 사용하는건 비추천한다, 왜냐하면 julia는 이름 규칙이 따로 존재하기 때문이다.
+julia 명명 규칙 (발번역 주의)  변수명은 소문자로 한다 #example name = &quot;Sunken Ahn&quot;  단구 구분은 언더바(_)로 구분, 단 이름이 읽기 어려운게 아니면 사용은 자세 #example my_name = &quot;Sunken Ahn&quot;  모듈,타입은 단어 시작을 대문자로, 단어구분도 단어 첫글자를 대문자로 하여 구분 #example struct Foo bar baz end foo = Foo(1,2)  함수, 매코르는 언더바(_)없이 소문자 #example function f(x,y) x &#43; y end  인수로 쓰는 함수(&ldquo;mutating&rdquo; or &ldquo;in-place&rdquo; functions)는 이름이 !"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "http://example.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "julia-'이름 규칙'",
+      "item": "http://example.org/posts/julia/1-variables/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "julia-'이름 규칙'",
+  "name": "julia-\u0027이름 규칙\u0027",
+  "description": "julia 공식 매뉴얼에서 변수 관련 문서를 보고 코드를 작성하면서 몇가지 특징을 알게 되었다.\n첫째로 요즘 언어들도 갖고있는 특성이지만 유니코드를 지원하여, 한글로 변수명이 가능하다는것과 심지어 특수기호로도 변수명이 되는걸 알수있다. 그렇다고 해서 한글 또는 특수기호로 변수명을 작성해서 사용하는건 비추천한다, 왜냐하면 julia는 이름 규칙이 따로 존재하기 때문이다.\njulia 명명 규칙 (발번역 주의)  변수명은 소문자로 한다 #example name = \u0026quot;Sunken Ahn\u0026quot;  단구 구분은 언더바(_)로 구분, 단 이름이 읽기 어려운게 아니면 사용은 자세 #example my_name = \u0026quot;Sunken Ahn\u0026quot;  모듈,타입은 단어 시작을 대문자로, 단어구분도 단어 첫글자를 대문자로 하여 구분 #example struct Foo bar baz end foo = Foo(1,2)  함수, 매코르는 언더바(_)없이 소문자 #example function f(x,y) x + y end  인수로 쓰는 함수(\u0026ldquo;mutating\u0026rdquo; or \u0026ldquo;in-place\u0026rdquo; functions)는 이름이 !",
+  "keywords": [
+    "julia", "프로그래밍 언어", "기초"
+  ],
+  "articleBody": "julia 공식 매뉴얼에서 변수 관련 문서를 보고 코드를 작성하면서 몇가지 특징을 알게 되었다.\n첫째로 요즘 언어들도 갖고있는 특성이지만 유니코드를 지원하여, 한글로 변수명이 가능하다는것과 심지어 특수기호로도 변수명이 되는걸 알수있다. 그렇다고 해서 한글 또는 특수기호로 변수명을 작성해서 사용하는건 비추천한다, 왜냐하면 julia는 이름 규칙이 따로 존재하기 때문이다.\njulia 명명 규칙 (발번역 주의)  변수명은 소문자로 한다 #example name = \"Sunken Ahn\"  단구 구분은 언더바(_)로 구분, 단 이름이 읽기 어려운게 아니면 사용은 자세 #example my_name = \"Sunken Ahn\"  모듈,타입은 단어 시작을 대문자로, 단어구분도 단어 첫글자를 대문자로 하여 구분 #example struct Foo bar baz end foo = Foo(1,2)  함수, 매코르는 언더바(_)없이 소문자 #example function f(x,y) x + y end  인수로 쓰는 함수(“mutating” or “in-place” functions)는 이름이 !로 끝나야 한다 #example function first_element_change_one!(v::Vector{Int64}) v[0] = 1 end   참고 매뉴얼 : variables\n",
+  "wordCount" : "124",
+  "inLanguage": "en",
+  "datePublished": "2021-07-24T12:36:38+09:00",
+  "dateModified": "2021-07-24T12:36:38+09:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://example.org/posts/julia/1-variables/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Sunken Ahn Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://example.org/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: #1d1e20;
+                --entry: #2e2e33;
+                --primary: rgba(255, 255, 255, 0.84);
+                --secondary: rgba(255, 255, 255, 0.56);
+                --tertiary: rgba(255, 255, 255, 0.16);
+                --content: rgba(255, 255, 255, 0.74);
+                --hljs-bg: #2e2e33;
+                --code-bg: #37383e;
+                --border: #333;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://example.org/" accesskey="h" title="Sunken Ahn Blog (Alt + H)">Sunken Ahn Blog</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://example.org/about/" title="about">
+                    <span>about</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://example.org/archives/" title="archives">
+                    <span>archives</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://example.org/tags/" title="tags">
+                    <span>tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      julia-&#39;이름 규칙&#39;
+    </h1>
+    <div class="post-meta">July 24, 2021
+</div>
+  </header> 
+  <div class="post-content"><p>julia 공식 매뉴얼에서 변수 관련 문서를 보고 코드를 작성하면서 몇가지 특징을 알게 되었다.</p>
+<p>첫째로 요즘 언어들도 갖고있는 특성이지만 유니코드를 지원하여, 한글로 변수명이 가능하다는것과 심지어 특수기호로도 변수명이 되는걸 알수있다.
+<img loading="lazy" src="/posts/julia/1/unicode_name.PNG" alt="exmaple"  />
+</p>
+<p>그렇다고 해서 한글 또는 특수기호로 변수명을 작성해서 사용하는건 비추천한다, 왜냐하면 julia는 이름 규칙이 따로 존재하기 때문이다.</p>
+<h3 id="julia-명명-규칙">julia 명명 규칙<a hidden class="anchor" aria-hidden="true" href="#julia-명명-규칙">#</a></h3>
+<h6 id="발번역-주의">(발번역 주의)<a hidden class="anchor" aria-hidden="true" href="#발번역-주의">#</a></h6>
+<ol>
+<li>변수명은 소문자로 한다
+<pre><code>#example
+name = &quot;Sunken Ahn&quot;
+</code></pre></li>
+<li>단구 구분은 언더바(_)로 구분, 단 이름이 읽기 어려운게 아니면 사용은 자세
+<pre><code>#example
+my_name = &quot;Sunken Ahn&quot;
+</code></pre></li>
+<li>모듈,타입은 단어 시작을 대문자로, 단어구분도 단어 첫글자를 대문자로 하여 구분
+<pre><code>#example
+struct Foo
+    bar
+    baz
+end
+foo = Foo(1,2)
+</code></pre></li>
+<li>함수, 매코르는 언더바(_)없이 소문자
+<pre><code>#example
+function f(x,y)
+    x + y
+end
+</code></pre></li>
+<li>인수로 쓰는 함수(&ldquo;mutating&rdquo; or &ldquo;in-place&rdquo; functions)는 이름이 !로 끝나야 한다
+<pre><code>#example
+function first_element_change_one!(v::Vector{Int64})
+    v[0] = 1
+end
+</code></pre></li>
+</ol>
+<h4 id="참고">참고<a hidden class="anchor" aria-hidden="true" href="#참고">#</a></h4>
+<p>매뉴얼 : <a href="https://docs.julialang.org/en/v1/manual/variables/"> variables</a></p>
+
+
+  </div>
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://example.org/tags/julia/">julia</a></li>
+      <li><a href="http://example.org/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EC%96%B8%EC%96%B4/">프로그래밍 언어</a></li>
+      <li><a href="http://example.org/tags/%EA%B8%B0%EC%B4%88/">기초</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    <footer class="footer">
+    <span>&copy; 2021 <a href="http://example.org/">Sunken Ahn Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

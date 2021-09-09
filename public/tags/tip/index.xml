@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>tip on Sunken Ahn Blog</title>
+    <link>http://example.org/tags/tip/</link>
+    <description>Recent content in tip on Sunken Ahn Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 21 Jul 2021 21:04:42 +0900</lastBuildDate><atom:link href="http://example.org/tags/tip/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>비교연산자가 포함된 if문을 비트연산으로 변화</title>
+      <link>http://example.org/posts/optimizing_the_if_less_operator/</link>
+      <pubDate>Wed, 21 Jul 2021 21:04:42 +0900</pubDate>
+      
+      <guid>http://example.org/posts/optimizing_the_if_less_operator/</guid>
+      <description>여가시간에 프로그래밍 정보를 얻어보고자 stackoverflow에서 상당히 좋은글을 보게 되었다.
+보통 코딩을 할때 &amp;ldquo;n개의 정수배열에서 y 보다 작거나 같은 Xn을 서로 합하여라&amp;rdquo; 라는 문제가 있을경우 보통 이렇게 코드를 작성하게 된다.
+//cpp 예시코드 for(int i;i&amp;lt;=array_size;i++) { int x = array[i]; if(x &amp;lt;= y) { sum += x; } } 이렇게 해당 소스코드를 작성할것이다.
+해당 소스코드는 1개의 if,한개의 비교연산자를 이용하여 x가 y보다 작거나 같으면, sum 변수에 더한다 라는 간단한 기능이 구현되어있다,그럼 여기서 어떻게 해야 성능 최적화가 되는건가?</description>
+    </item>
+    
+  </channel>
+</rss>

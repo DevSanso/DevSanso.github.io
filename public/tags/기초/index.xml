@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>기초 on Sunken Ahn Blog</title>
+    <link>http://example.org/tags/%EA%B8%B0%EC%B4%88/</link>
+    <description>Recent content in 기초 on Sunken Ahn Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 26 Jul 2021 20:24:39 +0900</lastBuildDate><atom:link href="http://example.org/tags/%EA%B8%B0%EC%B4%88/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>julia-&#39;dot 연산자&#39;</title>
+      <link>http://example.org/posts/julia/2-dot_operator/</link>
+      <pubDate>Mon, 26 Jul 2021 20:24:39 +0900</pubDate>
+      
+      <guid>http://example.org/posts/julia/2-dot_operator/</guid>
+      <description>julia에 dot 연산자라고, 배열안의 요소별로 각각 연산해주는것이 있다. 예시로 백터를 생성후 요소값들을 각각 하나씩 더하고 싶을때 보통은 for문등 방법을 사용하는게 보통이다.
+julia&amp;gt; x = [1,2,3,4,5] #output #5-element Vector{Int64}: # 1 # 2 # 3 # 4 # 5 julia&amp;gt; i = 1 julia&amp;gt; while i &amp;lt;= 5 x[i] = x[i]+2 global i += 1 end julia&amp;gt; x #output #5-element Vector{Int64}: # 3 # 4 # 5 # 6 # 7 허나 julia에서는 dot 연산자를 사용해 한줄코드로 간단하게 사용할수 있다.</description>
+    </item>
+    
+    <item>
+      <title>julia-&#39;이름 규칙&#39;</title>
+      <link>http://example.org/posts/julia/1-variables/</link>
+      <pubDate>Sat, 24 Jul 2021 12:36:38 +0900</pubDate>
+      
+      <guid>http://example.org/posts/julia/1-variables/</guid>
+      <description>julia 공식 매뉴얼에서 변수 관련 문서를 보고 코드를 작성하면서 몇가지 특징을 알게 되었다.
+첫째로 요즘 언어들도 갖고있는 특성이지만 유니코드를 지원하여, 한글로 변수명이 가능하다는것과 심지어 특수기호로도 변수명이 되는걸 알수있다. 그렇다고 해서 한글 또는 특수기호로 변수명을 작성해서 사용하는건 비추천한다, 왜냐하면 julia는 이름 규칙이 따로 존재하기 때문이다.
+julia 명명 규칙 (발번역 주의)  변수명은 소문자로 한다 #example name = &amp;quot;Sunken Ahn&amp;quot;  단구 구분은 언더바(_)로 구분, 단 이름이 읽기 어려운게 아니면 사용은 자세 #example my_name = &amp;quot;Sunken Ahn&amp;quot;  모듈,타입은 단어 시작을 대문자로, 단어구분도 단어 첫글자를 대문자로 하여 구분 #example struct Foo bar baz end foo = Foo(1,2)  함수, 매코르는 언더바(_)없이 소문자 #example function f(x,y) x + y end  인수로 쓰는 함수(&amp;ldquo;mutating&amp;rdquo; or &amp;ldquo;in-place&amp;rdquo; functions)는 이름이 !</description>
+    </item>
+    
+    <item>
+      <title>julia-&#39;julia 이란?&#39;</title>
+      <link>http://example.org/posts/julia/0-intro/</link>
+      <pubDate>Fri, 23 Jul 2021 18:39:55 +0900</pubDate>
+      
+      <guid>http://example.org/posts/julia/0-intro/</guid>
+      <description>최근들어 알고리즘, 영어, 수치 해석, 정보 처리 기사 공부들이 하기 힘들어서 구글링을 하며 시간을 보내던중, 스택오버플로우 2020 survey에서 개발하고 있고, 또는 개발하고 싶은 언어 상위권을 보던도중 julia라는 새로보는 언어가 있는걸 알게되고, 요즘 공부도 별로 안되니 취미로써(?) 해당 언어를 배우기로 결정하였다.
+julia 언어 해당 언어에 대해 알아본 결과 수치해석에 사용하는 프로그래밍 언어로 보인다. 또한 공식 사이트에서 해당 언어의 장점이 설명되있는데 부족한 영어실력으로 발변역을 해본결과..  Fast : 높은 성능에 맞쳐 디자인 하였으며, LLVM를 통해 효과적으로 멀티 플랫품에서 네이티브 코드로 컴파일 하였습니다.</description>
+    </item>
+    
+  </channel>
+</rss>
