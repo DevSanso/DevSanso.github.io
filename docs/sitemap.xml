@@ -2,19 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://devsanso.github.io/tags/etc/</loc>
+    <lastmod>2021-10-07T10:27:57+09:00</lastmod>
+  </url><url>
+    <loc>https://devsanso.github.io/posts/</loc>
+    <lastmod>2021-10-07T10:27:57+09:00</lastmod>
+  </url><url>
+    <loc>https://devsanso.github.io/</loc>
+    <lastmod>2021-10-07T10:27:57+09:00</lastmod>
+  </url><url>
+    <loc>https://devsanso.github.io/tags/</loc>
+    <lastmod>2021-10-07T10:27:57+09:00</lastmod>
+  </url><url>
+    <loc>https://devsanso.github.io/tags/tip/</loc>
+    <lastmod>2021-10-07T10:27:57+09:00</lastmod>
+  </url><url>
+    <loc>https://devsanso.github.io/posts/thread_file_io_performance/</loc>
+    <lastmod>2021-10-07T10:27:57+09:00</lastmod>
+  </url><url>
     <loc>https://devsanso.github.io/posts/javascript/difference_between_await_and_then/</loc>
     <lastmod>2021-09-10T00:41:00+09:00</lastmod>
   </url><url>
     <loc>https://devsanso.github.io/tags/javascript/</loc>
-    <lastmod>2021-09-10T00:41:00+09:00</lastmod>
-  </url><url>
-    <loc>https://devsanso.github.io/posts/</loc>
-    <lastmod>2021-09-10T00:41:00+09:00</lastmod>
-  </url><url>
-    <loc>https://devsanso.github.io/</loc>
-    <lastmod>2021-09-10T00:41:00+09:00</lastmod>
-  </url><url>
-    <loc>https://devsanso.github.io/tags/</loc>
     <lastmod>2021-09-10T00:41:00+09:00</lastmod>
   </url><url>
     <loc>https://devsanso.github.io/tags/julia/</loc>
@@ -34,9 +43,6 @@
   </url><url>
     <loc>https://devsanso.github.io/posts/julia/0-intro/</loc>
     <lastmod>2021-07-23T18:39:55+09:00</lastmod>
-  </url><url>
-    <loc>https://devsanso.github.io/tags/tip/</loc>
-    <lastmod>2021-07-21T21:04:42+09:00</lastmod>
   </url><url>
     <loc>https://devsanso.github.io/posts/optimizing_the_if_less_operator/</loc>
     <lastmod>2021-07-21T21:04:42+09:00</lastmod>

@@ -18,7 +18,7 @@
 <link rel="mask-icon" href="https://devsanso.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.87.0" />
+<meta name="generator" content="Hugo 0.88.1" />
 <link rel="alternate" type="application/rss+xml" href="https://devsanso.github.io/index.xml">
 <link rel="alternate" type="application/json" href="https://devsanso.github.io/index.json">
 <meta property="og:title" content="Sunken Ahn Blog" />
@@ -153,6 +153,19 @@
 </div>
 
     </footer>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>싱글,멀티 스레드 파일 입출력 성능 </h2>
+  </header>
+  <section class="entry-content">
+    <p>프로그래밍 하는 도중 파일을 입출력 코드를 작성하는 상황이 있었는데, 여기서 “파일 입출력을 싱글 스레드 그리고 멀티 스레드중 어느것이 나을까?“라고 궁금중이 생겨서, 따로 코드를 작성하고 테스트했던것을 적어볼려고 한다.
+우선 나는 어느것이 성능이 좋을지 생각하면서 어떤 프로그램 요구서를 생각하고, 그것에 따라서 작성해보았다.
+프로그램 계획 요구 : 랜덤 해쉬값을 생성후, 해당값을 파일이름 그리고 파일내용으로 작성하여 특정폴더에 저장한다.  프로그램은 싱글,멀티스레드 선택값,폴더경로 그리고 파일 생성 갯수값을 인수로 입력받는다 해쉬값을 랜덤으로 생성한다 해당값으로 파일명으로 해서 생성후, 해당 파일에 해당값을 저장 이 행동을 생성 갯수값만큼 반복한다 반복이 완료후의 시간을 측정하고, 출력한다 프로그램 종료  그리고 해당 요구서를 토대로 코틀린으로 작성해보았다....</p>
+  </section>
+  <footer class="entry-footer">October 7, 2021</footer>
+  <a class="entry-link" aria-label="post link to 싱글,멀티 스레드 파일 입출력 성능 " href="https://devsanso.github.io/posts/thread_file_io_performance/"></a>
 </article>
 
 <article class="post-entry"> 

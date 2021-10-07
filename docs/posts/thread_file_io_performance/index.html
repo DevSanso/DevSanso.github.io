@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>싱글,멀티 스레드 파일 입출력 성능  | Sunken Ahn Blog</title>
+<meta name="keywords" content="tip, etc" />
+<meta name="description" content="프로그래밍 하는 도중 파일을 입출력 코드를 작성하는 상황이 있었는데, 여기서 &ldquo;파일 입출력을 싱글 스레드 그리고 멀티 스레드중 어느것이 나을까?&ldquo;라고 궁금중이 생겨서, 따로 코드를 작성하고 테스트했던것을 적어볼려고 한다.
+우선 나는 어느것이 성능이 좋을지 생각하면서 어떤 프로그램 요구서를 생각하고, 그것에 따라서 작성해보았다.
+프로그램 계획 요구 : 랜덤 해쉬값을 생성후, 해당값을 파일이름 그리고 파일내용으로 작성하여 특정폴더에 저장한다.  프로그램은 싱글,멀티스레드 선택값,폴더경로 그리고 파일 생성 갯수값을 인수로 입력받는다 해쉬값을 랜덤으로 생성한다 해당값으로 파일명으로 해서 생성후, 해당 파일에 해당값을 저장 이 행동을 생성 갯수값만큼 반복한다 반복이 완료후의 시간을 측정하고, 출력한다 프로그램 종료  그리고 해당 요구서를 토대로 코틀린으로 작성해보았다.">
+<meta name="author" content="">
+<link rel="canonical" href="https://devsanso.github.io/posts/thread_file_io_performance/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.35cd0f65a15cafa92372b8313deef5960aae04b90ad722f2bbf509eb0468137e.css" integrity="sha256-Nc0PZaFcr6kjcrgxPe71lgquBLkK1yLyu/UJ6wRoE34=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://devsanso.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://devsanso.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://devsanso.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://devsanso.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://devsanso.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.88.1" />
+<meta property="og:title" content="싱글,멀티 스레드 파일 입출력 성능 " />
+<meta property="og:description" content="프로그래밍 하는 도중 파일을 입출력 코드를 작성하는 상황이 있었는데, 여기서 &ldquo;파일 입출력을 싱글 스레드 그리고 멀티 스레드중 어느것이 나을까?&ldquo;라고 궁금중이 생겨서, 따로 코드를 작성하고 테스트했던것을 적어볼려고 한다.
+우선 나는 어느것이 성능이 좋을지 생각하면서 어떤 프로그램 요구서를 생각하고, 그것에 따라서 작성해보았다.
+프로그램 계획 요구 : 랜덤 해쉬값을 생성후, 해당값을 파일이름 그리고 파일내용으로 작성하여 특정폴더에 저장한다.  프로그램은 싱글,멀티스레드 선택값,폴더경로 그리고 파일 생성 갯수값을 인수로 입력받는다 해쉬값을 랜덤으로 생성한다 해당값으로 파일명으로 해서 생성후, 해당 파일에 해당값을 저장 이 행동을 생성 갯수값만큼 반복한다 반복이 완료후의 시간을 측정하고, 출력한다 프로그램 종료  그리고 해당 요구서를 토대로 코틀린으로 작성해보았다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://devsanso.github.io/posts/thread_file_io_performance/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-10-07T10:27:57&#43;09:00" />
+<meta property="article:modified_time" content="2021-10-07T10:27:57&#43;09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="싱글,멀티 스레드 파일 입출력 성능 "/>
+<meta name="twitter:description" content="프로그래밍 하는 도중 파일을 입출력 코드를 작성하는 상황이 있었는데, 여기서 &ldquo;파일 입출력을 싱글 스레드 그리고 멀티 스레드중 어느것이 나을까?&ldquo;라고 궁금중이 생겨서, 따로 코드를 작성하고 테스트했던것을 적어볼려고 한다.
+우선 나는 어느것이 성능이 좋을지 생각하면서 어떤 프로그램 요구서를 생각하고, 그것에 따라서 작성해보았다.
+프로그램 계획 요구 : 랜덤 해쉬값을 생성후, 해당값을 파일이름 그리고 파일내용으로 작성하여 특정폴더에 저장한다.  프로그램은 싱글,멀티스레드 선택값,폴더경로 그리고 파일 생성 갯수값을 인수로 입력받는다 해쉬값을 랜덤으로 생성한다 해당값으로 파일명으로 해서 생성후, 해당 파일에 해당값을 저장 이 행동을 생성 갯수값만큼 반복한다 반복이 완료후의 시간을 측정하고, 출력한다 프로그램 종료  그리고 해당 요구서를 토대로 코틀린으로 작성해보았다."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://devsanso.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "싱글,멀티 스레드 파일 입출력 성능 ",
+      "item": "https://devsanso.github.io/posts/thread_file_io_performance/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "싱글,멀티 스레드 파일 입출력 성능 ",
+  "name": "싱글,멀티 스레드 파일 입출력 성능 ",
+  "description": "프로그래밍 하는 도중 파일을 입출력 코드를 작성하는 상황이 있었는데, 여기서 \u0026ldquo;파일 입출력을 싱글 스레드 그리고 멀티 스레드중 어느것이 나을까?\u0026ldquo;라고 궁금중이 생겨서, 따로 코드를 작성하고 테스트했던것을 적어볼려고 한다.\n우선 나는 어느것이 성능이 좋을지 생각하면서 어떤 프로그램 요구서를 생각하고, 그것에 따라서 작성해보았다.\n프로그램 계획 요구 : 랜덤 해쉬값을 생성후, 해당값을 파일이름 그리고 파일내용으로 작성하여 특정폴더에 저장한다.  프로그램은 싱글,멀티스레드 선택값,폴더경로 그리고 파일 생성 갯수값을 인수로 입력받는다 해쉬값을 랜덤으로 생성한다 해당값으로 파일명으로 해서 생성후, 해당 파일에 해당값을 저장 이 행동을 생성 갯수값만큼 반복한다 반복이 완료후의 시간을 측정하고, 출력한다 프로그램 종료  그리고 해당 요구서를 토대로 코틀린으로 작성해보았다.",
+  "keywords": [
+    "tip", "etc"
+  ],
+  "articleBody": "프로그래밍 하는 도중 파일을 입출력 코드를 작성하는 상황이 있었는데, 여기서 “파일 입출력을 싱글 스레드 그리고 멀티 스레드중 어느것이 나을까?“라고 궁금중이 생겨서, 따로 코드를 작성하고 테스트했던것을 적어볼려고 한다.\n우선 나는 어느것이 성능이 좋을지 생각하면서 어떤 프로그램 요구서를 생각하고, 그것에 따라서 작성해보았다.\n프로그램 계획 요구 : 랜덤 해쉬값을 생성후, 해당값을 파일이름 그리고 파일내용으로 작성하여 특정폴더에 저장한다.  프로그램은 싱글,멀티스레드 선택값,폴더경로 그리고 파일 생성 갯수값을 인수로 입력받는다 해쉬값을 랜덤으로 생성한다 해당값으로 파일명으로 해서 생성후, 해당 파일에 해당값을 저장 이 행동을 생성 갯수값만큼 반복한다 반복이 완료후의 시간을 측정하고, 출력한다 프로그램 종료  그리고 해당 요구서를 토대로 코틀린으로 작성해보았다.\n//main.kt //메인 함수 import java.lang.Exception import kotlin.system.measureTimeMillis fun main(args: Array) { val c = args.first().toInt() // 1 : 멀티스레드,2: 싱글스레드 val root = args[1] // 폴더 경로 val count = args[2].toInt() // 파일 생성 갯수 val fIO : IoTest = when(c) { 1 - AsyncFileIO(count,root,4)// 스레드는 4개 생성후 사용 2 - NonFileIO(count,root) else - throw Exception(\"not 1 and 2\") } val time = measureTimeMillis { fIO.run() } println(\"time : ${time}(ms)\") } //IoTest.kt //추상클래스 abstract class IoTest constructor(protected val maxCount : Int,protected val root : String) { abstract fun run() } //NonFileIO.kt //싱글 스레드 작동 객체 import kotlin.io.* import java.io.File import java.nio.charset.Charset import java.util.UUID import java.nio.file.Paths class NonFileIO(maxCount: Int, root: String) : IoTest(maxCount, root) { override fun run() { var i = 0; var random_uuid = UUID.randomUUID().toString() while(i //AsyncFileIO.kt //멀티스레드 작성 객체 import kotlinx.coroutines.* import kotlinx.coroutines.channels.Channel import java.io.File import java.nio.charset.Charset import java.nio.file.Paths import java.util.* class AsyncFileIO( maxCount: Int, root: String,private val tCount : Int) : IoTest(maxCount, root) { private suspend fun createWorker (channel : Channel) { for(i in 1..tCount) { //해당 코드를 사용하면 자바내부에 스레드가 생성된다. CoroutineScope(Dispatchers.IO).launch { while(!channel.isClosedForSend) { if(channel.isEmpty)continue val msg = channel.receive() var file = File(Paths.get(root,msg).toString()) file.createNewFile() file.writeText(msg, Charset.defaultCharset()) } } } } override fun run() : Unit = runBlocking { val channel = Channel() val job = async { createWorker(channel) } for(i in 1..maxCount) { var random_uuid = UUID.randomUUID().toString() channel.send(random_uuid) } channel.close() job.await() } } 간단 설명 이미지 이것을 토대로 10000개의 파일을 생성하는 테스트를 해본결과…\n결과창    방식 시간표     싱글스레드 68.953s   멀티스레드 46.261s    이렇게 꽤 차이 나는 결과를 알게되었다.\n",
+  "wordCount" : "360",
+  "inLanguage": "en",
+  "datePublished": "2021-10-07T10:27:57+09:00",
+  "dateModified": "2021-10-07T10:27:57+09:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://devsanso.github.io/posts/thread_file_io_performance/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Sunken Ahn Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://devsanso.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: #1d1e20;
+                --entry: #2e2e33;
+                --primary: rgba(255, 255, 255, 0.84);
+                --secondary: rgba(255, 255, 255, 0.56);
+                --tertiary: rgba(255, 255, 255, 0.16);
+                --content: rgba(255, 255, 255, 0.74);
+                --hljs-bg: #2e2e33;
+                --code-bg: #37383e;
+                --border: #333;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://devsanso.github.io/" accesskey="h" title="Sunken Ahn Blog (Alt + H)">Sunken Ahn Blog</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://devsanso.github.io/about/" title="about">
+                    <span>about</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://devsanso.github.io/archives/" title="archives">
+                    <span>archives</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://devsanso.github.io/tags/" title="tags">
+                    <span>tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      싱글,멀티 스레드 파일 입출력 성능 
+    </h1>
+    <div class="post-meta">October 7, 2021
+</div>
+  </header> 
+  <div class="post-content"><p>프로그래밍 하는 도중 파일을 입출력 코드를 작성하는 상황이 있었는데, 여기서 &ldquo;파일 입출력을 싱글 스레드 그리고 멀티 스레드중 어느것이 나을까?&ldquo;라고 궁금중이 생겨서, 따로 코드를 작성하고 테스트했던것을 적어볼려고 한다.<br>
+우선 나는 어느것이 성능이 좋을지 생각하면서  어떤 프로그램 요구서를 생각하고, 그것에 따라서 작성해보았다.</p>
+<h3 id="프로그램-계획">프로그램 계획<a hidden class="anchor" aria-hidden="true" href="#프로그램-계획">#</a></h3>
+<h5 id="요구--랜덤-해쉬값을-생성후-해당값을-파일이름-그리고-파일내용으로-작성하여-특정폴더에-저장한다">요구 : 랜덤 해쉬값을 생성후, 해당값을 파일이름 그리고 파일내용으로 작성하여 특정폴더에 저장한다.<a hidden class="anchor" aria-hidden="true" href="#요구--랜덤-해쉬값을-생성후-해당값을-파일이름-그리고-파일내용으로-작성하여-특정폴더에-저장한다">#</a></h5>
+<ol>
+<li>프로그램은 싱글,멀티스레드 선택값,폴더경로 그리고 파일 생성 갯수값을 인수로 입력받는다</li>
+<li>해쉬값을 랜덤으로 생성한다</li>
+<li>해당값으로 파일명으로 해서 생성후, 해당 파일에 해당값을 저장</li>
+<li>이 행동을 생성 갯수값만큼 반복한다</li>
+<li>반복이 완료후의 시간을 측정하고, 출력한다</li>
+<li>프로그램 종료</li>
+</ol>
+<p>그리고 해당 요구서를 토대로 코틀린으로 작성해보았다.</p>
+<pre tabindex="0"><code class="language-{.kt}" data-lang="{.kt}">//main.kt
+
+//메인 함수
+import java.lang.Exception
+import kotlin.system.measureTimeMillis
+
+fun main(args: Array&lt;String&gt;) {
+
+    val c = args.first().toInt() // 1 : 멀티스레드,2: 싱글스레드
+    val root = args[1] // 폴더 경로
+    val count = args[2].toInt() // 파일 생성 갯수
+    val fIO : IoTest = when(c) {
+        1 -&gt; AsyncFileIO(count,root,4)// 스레드는 4개 생성후 사용
+        2 -&gt; NonFileIO(count,root)
+        else -&gt; throw Exception(&quot;not 1 and 2&quot;)
+    }
+
+    val time = measureTimeMillis {
+        fIO.run()
+    }
+
+    println(&quot;time : ${time}(ms)&quot;)
+}
+</code></pre><pre tabindex="0"><code class="language-{.kt}" data-lang="{.kt}">//IoTest.kt
+
+//추상클래스
+abstract class IoTest
+constructor(protected val maxCount : Int,protected val root : String) {
+    abstract fun run()
+}
+</code></pre><pre tabindex="0"><code class="language-{.kt}" data-lang="{.kt}">//NonFileIO.kt
+//싱글 스레드 작동 객체
+
+import kotlin.io.*
+import java.io.File
+import java.nio.charset.Charset
+import java.util.UUID
+import java.nio.file.Paths
+
+
+
+class NonFileIO(maxCount: Int, root: String) : IoTest(maxCount, root) {
+    override fun run() {
+        var i = 0;
+        var random_uuid = UUID.randomUUID().toString()
+
+        while(i &lt; maxCount) {
+            var file = File(Paths.get(root,random_uuid).toString())
+            file.createNewFile()
+            file.writeText(random_uuid, Charset.defaultCharset())
+            random_uuid = UUID.randomUUID().toString()
+            i++
+        }
+    }
+
+}
+</code></pre><pre tabindex="0"><code class="language-{.kt}" data-lang="{.kt}">//AsyncFileIO.kt
+//멀티스레드 작성 객체
+import kotlinx.coroutines.*
+import kotlinx.coroutines.channels.Channel
+import java.io.File
+import java.nio.charset.Charset
+import java.nio.file.Paths
+import java.util.*
+
+class AsyncFileIO(
+        maxCount: Int, root: String,private val tCount : Int) : IoTest(maxCount, root) {
+
+
+    private suspend fun createWorker (channel : Channel&lt;String&gt;) {
+        for(i in 1..tCount) {
+            //해당 코드를 사용하면 자바내부에 스레드가 생성된다.
+            CoroutineScope(Dispatchers.IO).launch {
+                while(!channel.isClosedForSend) {
+                    if(channel.isEmpty)continue
+                    val msg = channel.receive()
+                    var file = File(Paths.get(root,msg).toString())
+                    file.createNewFile()
+                    file.writeText(msg, Charset.defaultCharset())
+                }
+            }
+        }
+
+    }
+
+    override  fun run() : Unit = runBlocking {
+        val channel = Channel&lt;String&gt;()
+
+
+        val job = async {
+            createWorker(channel)
+        }
+        for(i in 1..maxCount) {
+            var random_uuid = UUID.randomUUID().toString()
+            channel.send(random_uuid)
+        }
+        channel.close()
+        job.await()
+    }
+
+
+
+}
+</code></pre><h3 id="간단-설명-이미지">간단 설명 이미지<a hidden class="anchor" aria-hidden="true" href="#간단-설명-이미지">#</a></h3>
+<p><img loading="lazy" src="/posts/thread_file_io_performance/%ec%84%a4%eb%aa%85.png" alt="멀티 스레드 설명"  />
+
+<img loading="lazy" src="/posts/thread_file_io_performance/%ec%84%a4%eb%aa%852.png" alt="싱글 스레드 설명"  />
+</p>
+<p>이것을 토대로 10000개의 파일을 생성하는 테스트를 해본결과&hellip;</p>
+<h3 id="결과창">결과창<a hidden class="anchor" aria-hidden="true" href="#결과창">#</a></h3>
+<p><img loading="lazy" src="/posts/thread_file_io_performance/%ea%b2%b0%ea%b3%bc%ec%b0%bd.PNG" alt="결과"  />
+</p>
+<table>
+<thead>
+<tr>
+<th>방식</th>
+<th>시간표</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>싱글스레드</td>
+<td>68.953s</td>
+</tr>
+<tr>
+<td>멀티스레드</td>
+<td>46.261s</td>
+</tr>
+</tbody>
+</table>
+<p>이렇게 꽤 차이 나는 결과를 알게되었다.</p>
+
+
+  </div>
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://devsanso.github.io/tags/tip/">tip</a></li>
+      <li><a href="https://devsanso.github.io/tags/etc/">etc</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    <footer class="footer">
+    <span>&copy; 2021 <a href="https://devsanso.github.io/">Sunken Ahn Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

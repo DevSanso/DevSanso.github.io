@@ -21,7 +21,7 @@ julia&gt; x = [1,2,3,4,5] #output #5-element Vector{Int64}: # 1 # 2 # 3 # 4 # 5 
 <link rel="mask-icon" href="https://devsanso.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.87.0" />
+<meta name="generator" content="Hugo 0.88.1" />
 <meta property="og:title" content="julia-&#39;dot 연산자&#39;" />
 <meta property="og:description" content="julia에 dot 연산자라고, 배열안의 요소별로 각각 연산해주는것이 있다. 예시로 백터를 생성후 요소값들을 각각 하나씩 더하고 싶을때 보통은 for문등 방법을 사용하는게 보통이다.
 julia&gt; x = [1,2,3,4,5] #output #5-element Vector{Int64}: # 1 # 2 # 3 # 4 # 5 julia&gt; i = 1 julia&gt; while i &lt;= 5 x[i] = x[i]&#43;2 global i &#43;= 1 end julia&gt; x #output #5-element Vector{Int64}: # 3 # 4 # 5 # 6 # 7 허나 julia에서는 dot 연산자를 사용해 한줄코드로 간단하게 사용할수 있다." />
@@ -195,7 +195,7 @@ julia&gt; x = [1,2,3,4,5] #output #5-element Vector{Int64}: # 1 # 2 # 3 # 4 # 5 
   </header> 
   <div class="post-content"><p>julia에 dot 연산자라고, 배열안의 요소별로 각각 연산해주는것이 있다.
 예시로 백터를 생성후 요소값들을 각각 하나씩 더하고 싶을때 보통은 for문등 방법을 사용하는게 보통이다.</p>
-<pre><code>julia&gt; x = [1,2,3,4,5]
+<pre tabindex="0"><code>julia&gt; x = [1,2,3,4,5]
 
 #output
 #5-element Vector{Int64}:
@@ -222,7 +222,7 @@ julia&gt; x
 # 7
 
 </code></pre><p>허나 julia에서는 dot 연산자를 사용해 한줄코드로 간단하게 사용할수 있다.</p>
-<pre><code>julia&gt; x .+ 2
+<pre tabindex="0"><code>julia&gt; x .+ 2
 #output
 #5-element Vector{Int64}:
 # 3
@@ -231,7 +231,7 @@ julia&gt; x
 # 6
 # 7
 </code></pre><p>또한 julia에서는 &ldquo;@.&ldquo;라는 매크로가 존재하는데, 계산식에 많은 dot(.)이 있을경우 표현식의 길이가 길어질수 있는데, 해당 매크로를 사용하면 dot를 각 연산자마다 사용할 필요가 없어져서, 표현식이 더 간결해질수 있다.</p>
-<pre><code>julia&gt; x = [1,2,3]
+<pre tabindex="0"><code>julia&gt; x = [1,2,3]
 #output
 #3-element Vector{Int64}:
 # 1
@@ -253,7 +253,7 @@ julia&gt; @. 2 * x^2 + sin(x)
 # 18.14112000805987
 
 </code></pre><h5 id="주의">주의<a hidden class="anchor" aria-hidden="true" href="#주의">#</a></h5>
-<pre><code>#자세한 이유는 모르나 인덱스를 1부터 시작하는걸로 보인다
+<pre tabindex="0"><code>#자세한 이유는 모르나 인덱스를 1부터 시작하는걸로 보인다
 #인텍스를 0으로 해서 첫번째 요소를 읽을라고 하면 오류가 발생한다.
 
 julia&gt; x[0]

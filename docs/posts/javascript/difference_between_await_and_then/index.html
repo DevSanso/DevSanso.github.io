@@ -22,7 +22,7 @@
 <link rel="mask-icon" href="https://devsanso.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.87.0" />
+<meta name="generator" content="Hugo 0.88.1" />
 <meta property="og:title" content="await와 then의 작동 차이" />
 <meta property="og:description" content="자바스크립트를 공부하다보면 비동기 함수 사용이라고 setTimeout , Promise 그리고 async과 await를 배우게 된다. 허나 이러한 사용법이 있다고 하고, 어떤 상황에 어떻게 써야하는지는 자세히 모르는경우 가 많았고, 그리고 이번에 이 궁금점을 풀기위해 코드를 작성하다가 알게된 내용을 적어볼려고한다.
 보통 자바스크립트는 싱글 스레드이기 때문에 비동기api를 이용하여 멀티스레딩을 한다고 이야기를 한다. 결국 비동기로 병렬처리를 하는것처럼 보여도 결국 싱글스레드에서 모든일을 한다는것이다, 그럼 만약 여러 비동기 함수안에 처리시간이 많은 루프가 있으면 어떻게 될까?
@@ -365,7 +365,7 @@
 <li>만약 처리하는 함수가 오래 걸리는 루프가 있을시, 해당 루프를 탈출하기 전까지 함수는 종료되지 않는다.</li>
 <li>그렇기에 결국 한객체만 처리할수밖에 없는 상황이 된다.</li>
 </ul>
-<pre><code>위 조건에 맞는것이 바로 promise.then를 사용한 방법이다. 
+<pre tabindex="0"><code>위 조건에 맞는것이 바로 promise.then를 사용한 방법이다. 
 실제 함수 중간에 console.log 함수를 작성하여 테스트한 결과, 한 객체의 promise만이 수없이 작동되게 된다. 그렇게 이벤트 큐에 끊임없이 쌓이게되니 브라우저가 결국 먹통되었다고 추측하고 있다.
 </code></pre><p>허나 그렇게 되지 않았고, 그 이유를 찾아본 결과, async함수에서 await블록으로 진입시, 해당 함수는 <strong>await블록에서 일시 정지되고</strong>, 다음 async함수가 실행되게 된다, 그후 일시정지된 함수가 다시 돌아오면 await가 처리 완료되면 async함수를 마저 처리하고, 만약 아직 완료가 안되면 또 일시 정지후 다음 함수가 실행된다는거다.</p>
 <h5 id="정확한-내용을-알고싶으면-해당-사이트를-참고하면-좋을것이다">정확한 내용을 알고싶으면 해당 사이트를 참고하면 좋을것이다.<a hidden class="anchor" aria-hidden="true" href="#정확한-내용을-알고싶으면-해당-사이트를-참고하면-좋을것이다">#</a></h5>
