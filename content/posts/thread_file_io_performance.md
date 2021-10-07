@@ -1,7 +1,7 @@
 ---
 title: "싱글,멀티 스레드 파일 입출력 성능 "
 date: 2021-10-07T10:27:57+09:00
-draft: true
+draft: false
 tags: [tip,etc]
 ---
 
