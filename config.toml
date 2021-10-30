@@ -1,8 +1,8 @@
 baseURL = "https://devsanso.github.io/"
-languageCode = "en-us"
+languageCode = "kr-ko"
 title = "Sunken Ahn Blog"
 theme = "PaperMod"
-
+publishDir = "docs"
 
 
 
