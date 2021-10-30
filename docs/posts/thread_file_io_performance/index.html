@@ -22,7 +22,7 @@
 <link rel="mask-icon" href="https://devsanso.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.88.1" />
+<meta name="generator" content="Hugo 0.80.0" />
 <meta property="og:title" content="싱글,멀티 스레드 파일 입출력 성능 " />
 <meta property="og:description" content="프로그래밍 하는 도중 파일을 입출력 코드를 작성하는 상황이 있었는데, 여기서 &ldquo;파일 입출력을 싱글 스레드 그리고 멀티 스레드중 어느것이 나을까?&ldquo;라고 궁금중이 생겨서, 따로 코드를 작성하고 테스트했던것을 적어볼려고 한다.
 우선 나는 어느것이 성능이 좋을지 생각하면서 어떤 프로그램 요구서를 생각하고, 그것에 따라서 작성해보았다.
@@ -209,7 +209,7 @@
 <li>프로그램 종료</li>
 </ol>
 <p>그리고 해당 요구서를 토대로 코틀린으로 작성해보았다.</p>
-<pre tabindex="0"><code class="language-{.kt}" data-lang="{.kt}">//main.kt
+<pre><code class="language-{.kt}" data-lang="{.kt}">//main.kt
 
 //메인 함수
 import java.lang.Exception
@@ -232,14 +232,14 @@ fun main(args: Array&lt;String&gt;) {
 
     println(&quot;time : ${time}(ms)&quot;)
 }
-</code></pre><pre tabindex="0"><code class="language-{.kt}" data-lang="{.kt}">//IoTest.kt
+</code></pre><pre><code class="language-{.kt}" data-lang="{.kt}">//IoTest.kt
 
 //추상클래스
 abstract class IoTest
 constructor(protected val maxCount : Int,protected val root : String) {
     abstract fun run()
 }
-</code></pre><pre tabindex="0"><code class="language-{.kt}" data-lang="{.kt}">//NonFileIO.kt
+</code></pre><pre><code class="language-{.kt}" data-lang="{.kt}">//NonFileIO.kt
 //싱글 스레드 작동 객체
 
 import kotlin.io.*
@@ -265,7 +265,7 @@ class NonFileIO(maxCount: Int, root: String) : IoTest(maxCount, root) {
     }
 
 }
-</code></pre><pre tabindex="0"><code class="language-{.kt}" data-lang="{.kt}">//AsyncFileIO.kt
+</code></pre><pre><code class="language-{.kt}" data-lang="{.kt}">//AsyncFileIO.kt
 //멀티스레드 작성 객체
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel

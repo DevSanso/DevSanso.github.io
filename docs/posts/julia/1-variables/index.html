@@ -22,7 +22,7 @@ julia 명명 규칙 (발번역 주의)  변수명은 소문자로 한다 #exampl
 <link rel="mask-icon" href="https://devsanso.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.88.1" />
+<meta name="generator" content="Hugo 0.80.0" />
 <meta property="og:title" content="julia-&#39;이름 규칙&#39;" />
 <meta property="og:description" content="julia 공식 매뉴얼에서 변수 관련 문서를 보고 코드를 작성하면서 몇가지 특징을 알게 되었다.
 첫째로 요즘 언어들도 갖고있는 특성이지만 유니코드를 지원하여, 한글로 변수명이 가능하다는것과 심지어 특수기호로도 변수명이 되는걸 알수있다. 그렇다고 해서 한글 또는 특수기호로 변수명을 작성해서 사용하는건 비추천한다, 왜냐하면 julia는 이름 규칙이 따로 존재하기 때문이다.
@@ -205,15 +205,15 @@ julia 명명 규칙 (발번역 주의)  변수명은 소문자로 한다 #exampl
 <h6 id="발번역-주의">(발번역 주의)<a hidden class="anchor" aria-hidden="true" href="#발번역-주의">#</a></h6>
 <ol>
 <li>변수명은 소문자로 한다
-<pre tabindex="0"><code>#example
+<pre><code>#example
 name = &quot;Sunken Ahn&quot;
 </code></pre></li>
 <li>단구 구분은 언더바(_)로 구분, 단 이름이 읽기 어려운게 아니면 사용은 자세
-<pre tabindex="0"><code>#example
+<pre><code>#example
 my_name = &quot;Sunken Ahn&quot;
 </code></pre></li>
 <li>모듈,타입은 단어 시작을 대문자로, 단어구분도 단어 첫글자를 대문자로 하여 구분
-<pre tabindex="0"><code>#example
+<pre><code>#example
 struct Foo
     bar
     baz
@@ -221,13 +221,13 @@ end
 foo = Foo(1,2)
 </code></pre></li>
 <li>함수, 매코르는 언더바(_)없이 소문자
-<pre tabindex="0"><code>#example
+<pre><code>#example
 function f(x,y)
     x + y
 end
 </code></pre></li>
 <li>인수로 쓰는 함수(&ldquo;mutating&rdquo; or &ldquo;in-place&rdquo; functions)는 이름이 !로 끝나야 한다
-<pre tabindex="0"><code>#example
+<pre><code>#example
 function first_element_change_one!(v::Vector{Int64})
     v[0] = 1
 end

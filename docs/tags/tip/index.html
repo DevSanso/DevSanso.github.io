@@ -18,7 +18,7 @@
 <link rel="mask-icon" href="https://devsanso.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.88.1" />
+<meta name="generator" content="Hugo 0.80.0" />
 <link rel="alternate" type="application/rss+xml" href="https://devsanso.github.io/tags/tip/index.xml">
 <meta property="og:title" content="tip" />
 <meta property="og:description" content="" />
@@ -142,6 +142,19 @@
   </section>
   <footer class="entry-footer">October 7, 2021</footer>
   <a class="entry-link" aria-label="post link to 싱글,멀티 스레드 파일 입출력 성능 " href="https://devsanso.github.io/posts/thread_file_io_performance/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>await와 then의 작동 차이</h2>
+  </header>
+  <section class="entry-content">
+    <p>자바스크립트를 공부하다보면 비동기 함수 사용이라고 setTimeout , Promise 그리고 async과 await를 배우게 된다. 허나 이러한 사용법이 있다고 하고, 어떤 상황에 어떻게 써야하는지는 자세히 모르는경우 가 많았고, 그리고 이번에 이 궁금점을 풀기위해 코드를 작성하다가 알게된 내용을 적어볼려고한다.
+보통 자바스크립트는 싱글 스레드이기 때문에 비동기api를 이용하여 멀티스레딩을 한다고 이야기를 한다. 결국 비동기로 병렬처리를 하는것처럼 보여도 결국 싱글스레드에서 모든일을 한다는것이다, 그럼 만약 여러 비동기 함수안에 처리시간이 많은 루프가 있으면 어떻게 될까?
+해당 궁금점을 알기위해 코드를 작성하기로 마음먹고, 다음과 같은 규칙과 목표를 세웠다....</p>
+  </section>
+  <footer class="entry-footer">September 10, 2021</footer>
+  <a class="entry-link" aria-label="post link to await와 then의 작동 차이" href="https://devsanso.github.io/posts/javascript/difference_between_await_and_then/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 

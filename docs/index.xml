@@ -5,8 +5,18 @@
     <link>https://devsanso.github.io/</link>
     <description>Recent content on Sunken Ahn Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 07 Oct 2021 10:27:57 +0900</lastBuildDate><atom:link href="https://devsanso.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <language>kr-ko</language>
+    <lastBuildDate>Sat, 30 Oct 2021 13:09:42 +0900</lastBuildDate><atom:link href="https://devsanso.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>trait를 리턴하는 방법</title>
+      <link>https://devsanso.github.io/posts/rust/how_return_trait/</link>
+      <pubDate>Sat, 30 Oct 2021 13:09:42 +0900</pubDate>
+      
+      <guid>https://devsanso.github.io/posts/rust/how_return_trait/</guid>
+      <description>러스트로 코딩하던 도중에 트레이드를 리턴해야하는 함수를 만들어야 하는 상황이 있었다. 그래서 go언어를 코딩하는것과 마찬가지로 리턴타입을 트레이드(go언어에선 인터페이스)로 하여 리턴 하는 함수를 작성후 컴파일 해본적이 있었는데 그때의 일을 적어볼려고 한다.
+//go 코드 예시 package main import &amp;#34;fmt&amp;#34; type Hi interface { hi() } type String struct { s string } func new_hi(s string) Hi { return &amp;amp;String{s} } func (s *String)hi() { fmt.Println(&amp;#34;hi : &amp;#34;s.s) } func main() { var str = &amp;#34;sunken ahn&amp;#34; new_hi(str).</description>
+    </item>
+    
     <item>
       <title>싱글,멀티 스레드 파일 입출력 성능 </title>
       <link>https://devsanso.github.io/posts/thread_file_io_performance/</link>
