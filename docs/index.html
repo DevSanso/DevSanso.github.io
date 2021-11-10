@@ -157,6 +157,19 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>모듈 임포트</h2>
+  </header>
+  <section class="entry-content">
+    <p>러스트로 코딩하는도중, 소스코드를 분리할 필요성을 느껴 별도의 모듈로 만들고나서 임포트 할려고 할때, 해당 프로젝트안의 로컬 모듈들을 어떻게 임포트 하는지, 기억하기 힘들어 따로 이렇게 글을 작성할 필요성을 느꼇다.
+러스트에서는 mod라는 키워드가 있는데, 해당 키워드는 두가지의 기능을 수행한다.
+ c&#43;&#43;.c#처럼 네임스페이스 비슷한 기능을 한다. 다른 모듈들을 인클루드 한다. 예시로 이런 코드가 있다고 치자  // path : src/main.rs  /* similar c&#43;&#43; namespace module { void hello() { std::cout &lt;&lt; &#34;hello world&#34; &lt;&lt; std::endl; } }; int main() { module::hello(); return 0; } */ mod module { pub fn hello() { println!...</p>
+  </section>
+  <footer class="entry-footer">November 4, 2021</footer>
+  <a class="entry-link" aria-label="post link to 모듈 임포트" href="https://devsanso.github.io/posts/rust/how_import_modules/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>trait를 리턴하는 방법</h2>
   </header>
   <section class="entry-content">

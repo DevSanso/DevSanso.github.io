@@ -6,7 +6,18 @@
     <description>Recent content in Posts on Sunken Ahn Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>kr-ko</language>
-    <lastBuildDate>Sat, 30 Oct 2021 13:09:42 +0900</lastBuildDate><atom:link href="https://devsanso.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 04 Nov 2021 22:14:44 +0900</lastBuildDate><atom:link href="https://devsanso.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>모듈 임포트</title>
+      <link>https://devsanso.github.io/posts/rust/how_import_modules/</link>
+      <pubDate>Thu, 04 Nov 2021 22:14:44 +0900</pubDate>
+      
+      <guid>https://devsanso.github.io/posts/rust/how_import_modules/</guid>
+      <description>러스트로 코딩하는도중, 소스코드를 분리할 필요성을 느껴 별도의 모듈로 만들고나서 임포트 할려고 할때, 해당 프로젝트안의 로컬 모듈들을 어떻게 임포트 하는지, 기억하기 힘들어 따로 이렇게 글을 작성할 필요성을 느꼇다.
+러스트에서는 mod라는 키워드가 있는데, 해당 키워드는 두가지의 기능을 수행한다.
+ c++.c#처럼 네임스페이스 비슷한 기능을 한다. 다른 모듈들을 인클루드 한다. 예시로 이런 코드가 있다고 치자  // path : src/main.rs  /* similar c++ namespace module { void hello() { std::cout &amp;lt;&amp;lt; &amp;#34;hello world&amp;#34; &amp;lt;&amp;lt; std::endl; } }; int main() { module::hello(); return 0; } */ mod module { pub fn hello() { println!</description>
+    </item>
+    
     <item>
       <title>trait를 리턴하는 방법</title>
       <link>https://devsanso.github.io/posts/rust/how_return_trait/</link>
