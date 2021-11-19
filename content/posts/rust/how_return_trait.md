@@ -2,7 +2,7 @@
 title: "trait를 리턴하는 방법"
 date: 2021-10-30T13:09:42+09:00
 draft: false
-tags : [tip,rust]
+tags : [tip,rust,정리노트]
 ---
 
 러스트로 코딩하던 도중에 트레이드를 리턴해야하는 함수를 만들어야 하는 상황이 있었다.

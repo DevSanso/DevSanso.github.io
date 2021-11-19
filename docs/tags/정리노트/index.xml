@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>정리노트 on Sunken Ahn Blog</title>
+    <link>https://devsanso.github.io/tags/%EC%A0%95%EB%A6%AC%EB%85%B8%ED%8A%B8/</link>
+    <description>Recent content in 정리노트 on Sunken Ahn Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>kr-ko</language>
+    <lastBuildDate>Thu, 04 Nov 2021 22:14:44 +0900</lastBuildDate><atom:link href="https://devsanso.github.io/tags/%EC%A0%95%EB%A6%AC%EB%85%B8%ED%8A%B8/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>모듈 임포트</title>
+      <link>https://devsanso.github.io/posts/rust/how_import_modules/</link>
+      <pubDate>Thu, 04 Nov 2021 22:14:44 +0900</pubDate>
+      
+      <guid>https://devsanso.github.io/posts/rust/how_import_modules/</guid>
+      <description>러스트로 코딩하는도중, 소스코드를 분리할 필요성을 느껴 별도의 모듈로 만들고나서 임포트 할려고 할때, 해당 프로젝트안의 로컬 모듈들을 어떻게 임포트 하는지, 기억하기 힘들어 따로 이렇게 글을 작성할 필요성을 느꼇다.
+러스트에서는 mod라는 키워드가 있는데, 해당 키워드는 두가지의 기능을 수행한다.
+ c++.c#처럼 네임스페이스 비슷한 기능을 한다. 다른 모듈들을 인클루드 한다. 예시로 이런 코드가 있다고 치자  // path : src/main.rs  /* similar c++ namespace module { void hello() { std::cout &amp;lt;&amp;lt; &amp;#34;hello world&amp;#34; &amp;lt;&amp;lt; std::endl; } }; int main() { module::hello(); return 0; } */ mod module { pub fn hello() { println!</description>
+    </item>
+    
+    <item>
+      <title>trait를 리턴하는 방법</title>
+      <link>https://devsanso.github.io/posts/rust/how_return_trait/</link>
+      <pubDate>Sat, 30 Oct 2021 13:09:42 +0900</pubDate>
+      
+      <guid>https://devsanso.github.io/posts/rust/how_return_trait/</guid>
+      <description>러스트로 코딩하던 도중에 트레이드를 리턴해야하는 함수를 만들어야 하는 상황이 있었다. 그래서 go언어를 코딩하는것과 마찬가지로 리턴타입을 트레이드(go언어에선 인터페이스)로 하여 리턴 하는 함수를 작성후 컴파일 해본적이 있었는데 그때의 일을 적어볼려고 한다.
+//go 코드 예시 package main import &amp;#34;fmt&amp;#34; type Hi interface { hi() } type String struct { s string } func new_hi(s string) Hi { return &amp;amp;String{s} } func (s *String)hi() { fmt.Println(&amp;#34;hi : &amp;#34;s.s) } func main() { var str = &amp;#34;sunken ahn&amp;#34; new_hi(str).</description>
+    </item>
+    
+    <item>
+      <title>싱글,멀티 스레드 파일 입출력 성능 </title>
+      <link>https://devsanso.github.io/posts/thread_file_io_performance/</link>
+      <pubDate>Thu, 07 Oct 2021 10:27:57 +0900</pubDate>
+      
+      <guid>https://devsanso.github.io/posts/thread_file_io_performance/</guid>
+      <description>프로그래밍 하는 도중 파일을 입출력 코드를 작성하는 상황이 있었는데, 여기서 &amp;ldquo;파일 입출력을 싱글 스레드 그리고 멀티 스레드중 어느것이 나을까?&amp;ldquo;라고 궁금중이 생겨서, 따로 코드를 작성하고 테스트했던것을 적어볼려고 한다.
+우선 나는 어느것이 성능이 좋을지 생각하면서 어떤 프로그램 요구서를 생각하고, 그것에 따라서 작성해보았다.
+프로그램 계획 요구 : 랜덤 해쉬값을 생성후, 해당값을 파일이름 그리고 파일내용으로 작성하여 특정폴더에 저장한다.  프로그램은 싱글,멀티스레드 선택값,폴더경로 그리고 파일 생성 갯수값을 인수로 입력받는다 해쉬값을 랜덤으로 생성한다 해당값으로 파일명으로 해서 생성후, 해당 파일에 해당값을 저장 이 행동을 생성 갯수값만큼 반복한다 반복이 완료후의 시간을 측정하고, 출력한다 프로그램 종료  그리고 해당 요구서를 토대로 코틀린으로 작성해보았다.</description>
+    </item>
+    
+    <item>
+      <title>비교연산자가 포함된 if문을 비트연산으로 변화</title>
+      <link>https://devsanso.github.io/posts/optimizing_the_if_less_operator/</link>
+      <pubDate>Wed, 21 Jul 2021 21:04:42 +0900</pubDate>
+      
+      <guid>https://devsanso.github.io/posts/optimizing_the_if_less_operator/</guid>
+      <description>여가시간에 프로그래밍 정보를 얻어보고자 stackoverflow에서 상당히 좋은글을 보게 되었다.
+보통 코딩을 할때 &amp;ldquo;n개의 정수배열에서 y 보다 작거나 같은 Xn을 서로 합하여라&amp;rdquo; 라는 문제가 있을경우 보통 이렇게 코드를 작성하게 된다.
+//cpp 예시코드 for(int i;i&amp;lt;=array_size;i++) { int x = array[i]; if(x &amp;lt;= y) { sum += x; } } 이렇게 해당 소스코드를 작성할것이다.
+해당 소스코드는 1개의 if,한개의 비교연산자를 이용하여 x가 y보다 작거나 같으면, sum 변수에 더한다 라는 간단한 기능이 구현되어있다,그럼 여기서 어떻게 해야 성능 최적화가 되는건가?</description>
+    </item>
+    
+  </channel>
+</rss>

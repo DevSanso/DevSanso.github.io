@@ -33,12 +33,17 @@
   </url>
   
   <url>
+    <loc>https://devsanso.github.io/tags/%EC%A0%95%EB%A6%AC%EB%85%B8%ED%8A%B8/</loc>
+    <lastmod>2021-11-04T22:14:44+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://devsanso.github.io/posts/rust/how_return_trait/</loc>
     <lastmod>2021-10-30T13:09:42+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://devsanso.github.io/tags/etc/</loc>
+    <loc>https://devsanso.github.io/tags/kotlin/</loc>
     <lastmod>2021-10-07T10:27:57+09:00</lastmod>
   </url>
   
@@ -68,12 +73,7 @@
   </url>
   
   <url>
-    <loc>https://devsanso.github.io/tags/%EA%B8%B0%EC%B4%88/</loc>
-    <lastmod>2021-07-26T20:24:39+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://devsanso.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EC%96%B8%EC%96%B4/</loc>
+    <loc>https://devsanso.github.io/tags/%EA%B8%B0%EC%B4%88%EA%B3%B5%EB%B6%80/</loc>
     <lastmod>2021-07-26T20:24:39+09:00</lastmod>
   </url>
   
@@ -89,11 +89,6 @@
   
   <url>
     <loc>https://devsanso.github.io/posts/optimizing_the_if_less_operator/</loc>
-    <lastmod>2021-07-21T21:04:42+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://devsanso.github.io/tags/%EC%B5%9C%EC%A0%81%ED%99%94/</loc>
     <lastmod>2021-07-21T21:04:42+09:00</lastmod>
   </url>
   

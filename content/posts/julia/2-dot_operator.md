@@ -2,7 +2,7 @@
 title: "julia-'dot 연산자'"
 date: 2021-07-26T20:24:39+09:00
 draft: false
-tags : [julia,프로그래밍 언어,기초]
+tags : [julia,기초공부]
 ---
 
 julia에 dot 연산자라고, 배열안의 요소별로 각각 연산해주는것이 있다.
