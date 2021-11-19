@@ -1,7 +1,7 @@
 ---
 title: "모듈 임포트"
 date: 2021-11-04T22:14:44+09:00
-tags : [tip,rust,정리노트]
+tags : [rust,정리노트,기초]
 draft: false
 ---
 

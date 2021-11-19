@@ -2,7 +2,7 @@
 title: "await와 then의 작동 차이"
 date: 2021-09-10T00:41:00+09:00
 draft: false
-tags : [javascript,tip]
+tags : [javascript,실험]
 ---
 
 자바스크립트를 공부하다보면 비동기 함수 사용이라고 **setTimeout** , **Promise** 그리고 **async과 await**를 배우게 된다. 허나 이러한 사용법이 있다고 하고, 어떤 상황에 어떻게 써야하는지는 자세히 모르는경우 가 많았고, 그리고 이번에 이 궁금점을 풀기위해 코드를 작성하다가 알게된 내용을 적어볼려고한다.  

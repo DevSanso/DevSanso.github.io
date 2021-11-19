@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>뉴스 on Sunken Ahn Blog</title>
+    <link>https://devsanso.github.io/tags/%EB%89%B4%EC%8A%A4/</link>
+    <description>Recent content in 뉴스 on Sunken Ahn Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>kr-ko</language>
+    <lastBuildDate>Fri, 19 Nov 2021 23:27:30 +0900</lastBuildDate><atom:link href="https://devsanso.github.io/tags/%EB%89%B4%EC%8A%A4/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>c#10에서 추가된거</title>
+      <link>https://devsanso.github.io/posts/csharp/new_csharp_10/</link>
+      <pubDate>Fri, 19 Nov 2021 23:27:30 +0900</pubDate>
+      
+      <guid>https://devsanso.github.io/posts/csharp/new_csharp_10/</guid>
+      <description>이번 11월에 netcore 6이 정식버젼이 배포되면서 c#이 10으로 업그레이드 됬다고 하여, 무엇이 바끼었나 보려 가보았다.
+global using 추가 //example global using System; 해당 지시문이 추가되면, 프로젝트 안에서 어느 파일이든 바로 using이 적용된다. 또한 static, 별칭 지시문도 똑같이 적용이 가능한다고 하낟.
+global using static System.Console; global using Env = System.Environment; 또한 해당 지시문이 어떤 파일에 있든 상관없이 똑같이 적용되기에, 해당 게시글에선 Program.cs 혹은 globalusings.cs을 생성하여 그곳에 추가하려 권장하고 있다.
+record structs record라고 c#9에서 추가된 기능에서 좀더 다른 기능이 추가된걸로 보인다.</description>
+    </item>
+    
+  </channel>
+</rss>

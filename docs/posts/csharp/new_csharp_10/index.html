@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>c#10에서 추가된거 | Sunken Ahn Blog</title>
+<meta name="keywords" content="뉴스, c#" />
+<meta name="description" content="이번 11월에 netcore 6이 정식버젼이 배포되면서 c#이 10으로 업그레이드 됬다고 하여, 무엇이 바끼었나 보려 가보았다.
+global using 추가 //example global using System; 해당 지시문이 추가되면, 프로젝트 안에서 어느 파일이든 바로 using이 적용된다. 또한 static, 별칭 지시문도 똑같이 적용이 가능한다고 하낟.
+global using static System.Console; global using Env = System.Environment; 또한 해당 지시문이 어떤 파일에 있든 상관없이 똑같이 적용되기에, 해당 게시글에선 Program.cs 혹은 globalusings.cs을 생성하여 그곳에 추가하려 권장하고 있다.
+record structs record라고 c#9에서 추가된 기능에서 좀더 다른 기능이 추가된걸로 보인다.">
+<meta name="author" content="">
+<link rel="canonical" href="https://devsanso.github.io/posts/csharp/new_csharp_10/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.35cd0f65a15cafa92372b8313deef5960aae04b90ad722f2bbf509eb0468137e.css" integrity="sha256-Nc0PZaFcr6kjcrgxPe71lgquBLkK1yLyu/UJ6wRoE34=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://devsanso.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://devsanso.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://devsanso.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://devsanso.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://devsanso.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.80.0" />
+<meta property="og:title" content="c#10에서 추가된거" />
+<meta property="og:description" content="이번 11월에 netcore 6이 정식버젼이 배포되면서 c#이 10으로 업그레이드 됬다고 하여, 무엇이 바끼었나 보려 가보았다.
+global using 추가 //example global using System; 해당 지시문이 추가되면, 프로젝트 안에서 어느 파일이든 바로 using이 적용된다. 또한 static, 별칭 지시문도 똑같이 적용이 가능한다고 하낟.
+global using static System.Console; global using Env = System.Environment; 또한 해당 지시문이 어떤 파일에 있든 상관없이 똑같이 적용되기에, 해당 게시글에선 Program.cs 혹은 globalusings.cs을 생성하여 그곳에 추가하려 권장하고 있다.
+record structs record라고 c#9에서 추가된 기능에서 좀더 다른 기능이 추가된걸로 보인다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://devsanso.github.io/posts/csharp/new_csharp_10/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-11-19T23:27:30&#43;09:00" />
+<meta property="article:modified_time" content="2021-11-19T23:27:30&#43;09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="c#10에서 추가된거"/>
+<meta name="twitter:description" content="이번 11월에 netcore 6이 정식버젼이 배포되면서 c#이 10으로 업그레이드 됬다고 하여, 무엇이 바끼었나 보려 가보았다.
+global using 추가 //example global using System; 해당 지시문이 추가되면, 프로젝트 안에서 어느 파일이든 바로 using이 적용된다. 또한 static, 별칭 지시문도 똑같이 적용이 가능한다고 하낟.
+global using static System.Console; global using Env = System.Environment; 또한 해당 지시문이 어떤 파일에 있든 상관없이 똑같이 적용되기에, 해당 게시글에선 Program.cs 혹은 globalusings.cs을 생성하여 그곳에 추가하려 권장하고 있다.
+record structs record라고 c#9에서 추가된 기능에서 좀더 다른 기능이 추가된걸로 보인다."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://devsanso.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "c#10에서 추가된거",
+      "item": "https://devsanso.github.io/posts/csharp/new_csharp_10/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "c#10에서 추가된거",
+  "name": "c#10에서 추가된거",
+  "description": "이번 11월에 netcore 6이 정식버젼이 배포되면서 c#이 10으로 업그레이드 됬다고 하여, 무엇이 바끼었나 보려 가보았다.\nglobal using 추가 //example global using System; 해당 지시문이 추가되면, 프로젝트 안에서 어느 파일이든 바로 using이 적용된다. 또한 static, 별칭 지시문도 똑같이 적용이 가능한다고 하낟.\nglobal using static System.Console; global using Env = System.Environment; 또한 해당 지시문이 어떤 파일에 있든 상관없이 똑같이 적용되기에, 해당 게시글에선 Program.cs 혹은 globalusings.cs을 생성하여 그곳에 추가하려 권장하고 있다.\nrecord structs record라고 c#9에서 추가된 기능에서 좀더 다른 기능이 추가된걸로 보인다.",
+  "keywords": [
+    "뉴스", "c#"
+  ],
+  "articleBody": "이번 11월에 netcore 6이 정식버젼이 배포되면서 c#이 10으로 업그레이드 됬다고 하여, 무엇이 바끼었나 보려 가보았다.\nglobal using 추가 //example global using System; 해당 지시문이 추가되면, 프로젝트 안에서 어느 파일이든 바로 using이 적용된다. 또한 static, 별칭 지시문도 똑같이 적용이 가능한다고 하낟.\nglobal using static System.Console; global using Env = System.Environment; 또한 해당 지시문이 어떤 파일에 있든 상관없이 똑같이 적용되기에, 해당 게시글에선 Program.cs 혹은 globalusings.cs을 생성하여 그곳에 추가하려 권장하고 있다.\nrecord structs record라고 c#9에서 추가된 기능에서 좀더 다른 기능이 추가된걸로 보인다.\n살펴보니 코틀린에 있는 data class랑 비슷한 역할을 하는걸로 보인다.\n//c#10 이전 public record struct Car { public string Company { get; init; } public string Name { get; init; } } //c#10 이후 public record struct Car(string Company,string Name); 자세한건 record 문서에서 확인할수 있다.\n지금 c#보단 다른걸 하다보니, 지금으로썬 이해가 쉽게되고, 흥미로운 기능들은 저거 2개이다.\n물론 여러 기능들도 생겼다\n  Extended property patterns (c#8에 추가된 속성 패턴기능 확장)   Parameterless struct constructors and field initializers (init 접근자 초기화를 생성자에서 초기화하는게 아닌,필드 초기화시점에서 할수 있게 한거)   File-scoped namespaces (자세히는 모르겠지만, 네임스페이스를 괄호없이 사용하면서, 클래스 정의도 할수 있게 하는것같다.)   Natural types for lambdas (잘 몰랐던 사실인데, 원래 람다를 변수에 대입할때 델리게이트 혹은 Func등을 사용해야하는걸 이제 var 키워드도 가능하게 한거같다)   허나 내가 c#을 처음 봤을때가 6버젼일때고, 그 6버젼조차 다 모르는 마당에 이렇게 여러 기능들이 추가되니, 지금이라도 복습하지 않으면 앞으로 c#을 쳐다보기도 매우 힘든 언어가 될것같다. 말 그대로(..)\n더 많은 내용은 net core6의 새로운점에 다한 문서를 보면 될것이다.\n",
+  "wordCount" : "231",
+  "inLanguage": "en",
+  "datePublished": "2021-11-19T23:27:30+09:00",
+  "dateModified": "2021-11-19T23:27:30+09:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://devsanso.github.io/posts/csharp/new_csharp_10/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Sunken Ahn Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://devsanso.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: #1d1e20;
+                --entry: #2e2e33;
+                --primary: rgba(255, 255, 255, 0.84);
+                --secondary: rgba(255, 255, 255, 0.56);
+                --tertiary: rgba(255, 255, 255, 0.16);
+                --content: rgba(255, 255, 255, 0.74);
+                --hljs-bg: #2e2e33;
+                --code-bg: #37383e;
+                --border: #333;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://devsanso.github.io/" accesskey="h" title="Sunken Ahn Blog (Alt + H)">Sunken Ahn Blog</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://devsanso.github.io/about/" title="about">
+                    <span>about</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://devsanso.github.io/archives/" title="archives">
+                    <span>archives</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://devsanso.github.io/tags/" title="tags">
+                    <span>tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      c#10에서 추가된거
+    </h1>
+    <div class="post-meta">November 19, 2021
+</div>
+  </header> 
+  <div class="post-content"><p>이번 11월에 netcore 6이 정식버젼이 배포되면서 c#이 10으로 업그레이드 됬다고 하여,
+무엇이 바끼었나 보려 가보았다.</p>
+<h2 id="global-using-추가">global using 추가<a hidden class="anchor" aria-hidden="true" href="#global-using-추가">#</a></h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#75715e">//example
+</span><span style="color:#75715e"></span>global <span style="color:#66d9ef">using</span> System;
+</code></pre></div><p>해당 지시문이 추가되면, 프로젝트 안에서 어느 파일이든 바로 using이 적용된다.
+또한 static, 별칭 지시문도 똑같이 적용이 가능한다고 하낟.</p>
+<pre><code>global using static System.Console;
+global using Env = System.Environment;
+</code></pre><p>또한 해당 지시문이 어떤 파일에 있든 상관없이 똑같이 적용되기에, 해당 게시글에선
+Program.cs 혹은 globalusings.cs을 생성하여 그곳에 추가하려 권장하고 있다.</p>
+<h2 id="record-structs">record structs<a hidden class="anchor" aria-hidden="true" href="#record-structs">#</a></h2>
+<p>record라고 c#9에서 추가된 기능에서 좀더 다른 기능이 추가된걸로 보인다.<br>
+살펴보니 코틀린에 있는 data class랑 비슷한 역할을 하는걸로 보인다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#75715e">//c#10 이전
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> record <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Car</span>
+{
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> Company { <span style="color:#66d9ef">get</span>; init; }
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> Name { <span style="color:#66d9ef">get</span>; init; }
+}
+<span style="color:#75715e">//c#10 이후
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> record <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Car</span>(<span style="color:#66d9ef">string</span> Company,<span style="color:#66d9ef">string</span> Name);
+</code></pre></div><p>자세한건 <a href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/record">record</a> 문서에서
+확인할수 있다.</p>
+<p>지금 c#보단 다른걸 하다보니, 지금으로썬 이해가 쉽게되고, 흥미로운 기능들은 저거 2개이다.<br>
+물론 여러 기능들도 생겼다</p>
+<ol>
+<li>
+<h4 id="extended-property-patterns-c8에-추가된-속성-패턴기능-확장">Extended property patterns (c#8에 추가된 속성 패턴기능 확장)<a hidden class="anchor" aria-hidden="true" href="#extended-property-patterns-c8에-추가된-속성-패턴기능-확장">#</a></h4>
+</li>
+<li>
+<h4 id="parameterless-struct-constructors-and-field-initializers-init-접근자-초기화를-생성자에서-초기화하는게-아닌필드-초기화시점에서-할수-있게-한거">Parameterless struct constructors and field initializers (init 접근자 초기화를 생성자에서 초기화하는게 아닌,필드 초기화시점에서 할수 있게 한거)<a hidden class="anchor" aria-hidden="true" href="#parameterless-struct-constructors-and-field-initializers-init-접근자-초기화를-생성자에서-초기화하는게-아닌필드-초기화시점에서-할수-있게-한거">#</a></h4>
+</li>
+<li>
+<h4 id="file-scoped-namespaces-자세히는-모르겠지만-네임스페이스를-괄호없이-사용하면서-클래스-정의도-할수-있게-하는것같다">File-scoped namespaces (자세히는 모르겠지만, 네임스페이스를 괄호없이 사용하면서, 클래스 정의도 할수 있게 하는것같다.)<a hidden class="anchor" aria-hidden="true" href="#file-scoped-namespaces-자세히는-모르겠지만-네임스페이스를-괄호없이-사용하면서-클래스-정의도-할수-있게-하는것같다">#</a></h4>
+</li>
+<li>
+<h4 id="natural-types-for-lambdas-잘-몰랐던-사실인데-원래-람다를-변수에-대입할때-델리게이트-혹은-func등을-사용해야하는걸-이제-var-키워드도-가능하게-한거같다">Natural types for lambdas (잘 몰랐던 사실인데, 원래 람다를 변수에 대입할때 델리게이트 혹은 Func등을 사용해야하는걸 이제 var 키워드도 가능하게 한거같다)<a hidden class="anchor" aria-hidden="true" href="#natural-types-for-lambdas-잘-몰랐던-사실인데-원래-람다를-변수에-대입할때-델리게이트-혹은-func등을-사용해야하는걸-이제-var-키워드도-가능하게-한거같다">#</a></h4>
+</li>
+</ol>
+<p>허나 내가 c#을 처음 봤을때가 6버젼일때고, 그 6버젼조차 다 모르는 마당에 이렇게 여러 기능들이 추가되니, 지금이라도 복습하지 않으면
+앞으로 c#을 쳐다보기도 매우 힘든 언어가 될것같다. 말 그대로(..)</p>
+<p>더 많은 내용은 <a href="https://devblogs.microsoft.com/dotnet/announcing-net-6/">net core6의 새로운점</a>에 다한 문서를 보면 될것이다.</p>
+
+
+  </div>
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://devsanso.github.io/tags/%EB%89%B4%EC%8A%A4/">뉴스</a></li>
+      <li><a href="https://devsanso.github.io/tags/c#/">c#</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    <footer class="footer">
+    <span>&copy; 2021 <a href="https://devsanso.github.io/">Sunken Ahn Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

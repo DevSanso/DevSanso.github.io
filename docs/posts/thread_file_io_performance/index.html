@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>싱글,멀티 스레드 파일 입출력 성능  | Sunken Ahn Blog</title>
-<meta name="keywords" content="tip, 정리노트, kotlin" />
+<meta name="keywords" content="실험, kotlin" />
 <meta name="description" content="프로그래밍 하는 도중 파일을 입출력 코드를 작성하는 상황이 있었는데, 여기서 &ldquo;파일 입출력을 싱글 스레드 그리고 멀티 스레드중 어느것이 나을까?&ldquo;라고 궁금중이 생겨서, 따로 코드를 작성하고 테스트했던것을 적어볼려고 한다.
 우선 나는 어느것이 성능이 좋을지 생각하면서 어떤 프로그램 요구서를 생각하고, 그것에 따라서 작성해보았다.
 프로그램 계획 요구 : 랜덤 해쉬값을 생성후, 해당값을 파일이름 그리고 파일내용으로 작성하여 특정폴더에 저장한다.  프로그램은 싱글,멀티스레드 선택값,폴더경로 그리고 파일 생성 갯수값을 인수로 입력받는다 해쉬값을 랜덤으로 생성한다 해당값으로 파일명으로 해서 생성후, 해당 파일에 해당값을 저장 이 행동을 생성 갯수값만큼 반복한다 반복이 완료후의 시간을 측정하고, 출력한다 프로그램 종료  그리고 해당 요구서를 토대로 코틀린으로 작성해보았다.">
@@ -67,7 +67,7 @@
   "name": "싱글,멀티 스레드 파일 입출력 성능 ",
   "description": "프로그래밍 하는 도중 파일을 입출력 코드를 작성하는 상황이 있었는데, 여기서 \u0026ldquo;파일 입출력을 싱글 스레드 그리고 멀티 스레드중 어느것이 나을까?\u0026ldquo;라고 궁금중이 생겨서, 따로 코드를 작성하고 테스트했던것을 적어볼려고 한다.\n우선 나는 어느것이 성능이 좋을지 생각하면서 어떤 프로그램 요구서를 생각하고, 그것에 따라서 작성해보았다.\n프로그램 계획 요구 : 랜덤 해쉬값을 생성후, 해당값을 파일이름 그리고 파일내용으로 작성하여 특정폴더에 저장한다.  프로그램은 싱글,멀티스레드 선택값,폴더경로 그리고 파일 생성 갯수값을 인수로 입력받는다 해쉬값을 랜덤으로 생성한다 해당값으로 파일명으로 해서 생성후, 해당 파일에 해당값을 저장 이 행동을 생성 갯수값만큼 반복한다 반복이 완료후의 시간을 측정하고, 출력한다 프로그램 종료  그리고 해당 요구서를 토대로 코틀린으로 작성해보았다.",
   "keywords": [
-    "tip", "정리노트", "kotlin"
+    "실험", "kotlin"
   ],
   "articleBody": "프로그래밍 하는 도중 파일을 입출력 코드를 작성하는 상황이 있었는데, 여기서 “파일 입출력을 싱글 스레드 그리고 멀티 스레드중 어느것이 나을까?“라고 궁금중이 생겨서, 따로 코드를 작성하고 테스트했던것을 적어볼려고 한다.\n우선 나는 어느것이 성능이 좋을지 생각하면서 어떤 프로그램 요구서를 생각하고, 그것에 따라서 작성해보았다.\n프로그램 계획 요구 : 랜덤 해쉬값을 생성후, 해당값을 파일이름 그리고 파일내용으로 작성하여 특정폴더에 저장한다.  프로그램은 싱글,멀티스레드 선택값,폴더경로 그리고 파일 생성 갯수값을 인수로 입력받는다 해쉬값을 랜덤으로 생성한다 해당값으로 파일명으로 해서 생성후, 해당 파일에 해당값을 저장 이 행동을 생성 갯수값만큼 반복한다 반복이 완료후의 시간을 측정하고, 출력한다 프로그램 종료  그리고 해당 요구서를 토대로 코틀린으로 작성해보았다.\n//main.kt //메인 함수 import java.lang.Exception import kotlin.system.measureTimeMillis fun main(args: Array) { val c = args.first().toInt() // 1 : 멀티스레드,2: 싱글스레드 val root = args[1] // 폴더 경로 val count = args[2].toInt() // 파일 생성 갯수 val fIO : IoTest = when(c) { 1 - AsyncFileIO(count,root,4)// 스레드는 4개 생성후 사용 2 - NonFileIO(count,root) else - throw Exception(\"not 1 and 2\") } val time = measureTimeMillis { fIO.run() } println(\"time : ${time}(ms)\") } //IoTest.kt //추상클래스 abstract class IoTest constructor(protected val maxCount : Int,protected val root : String) { abstract fun run() } //NonFileIO.kt //싱글 스레드 작동 객체 import kotlin.io.* import java.io.File import java.nio.charset.Charset import java.util.UUID import java.nio.file.Paths class NonFileIO(maxCount: Int, root: String) : IoTest(maxCount, root) { override fun run() { var i = 0; var random_uuid = UUID.randomUUID().toString() while(i //AsyncFileIO.kt //멀티스레드 작성 객체 import kotlinx.coroutines.* import kotlinx.coroutines.channels.Channel import java.io.File import java.nio.charset.Charset import java.nio.file.Paths import java.util.* class AsyncFileIO( maxCount: Int, root: String,private val tCount : Int) : IoTest(maxCount, root) { private suspend fun createWorker (channel : Channel) { for(i in 1..tCount) { //해당 코드를 사용하면 자바내부에 스레드가 생성된다. CoroutineScope(Dispatchers.IO).launch { while(!channel.isClosedForSend) { if(channel.isEmpty)continue val msg = channel.receive() var file = File(Paths.get(root,msg).toString()) file.createNewFile() file.writeText(msg, Charset.defaultCharset()) } } } } override fun run() : Unit = runBlocking { val channel = Channel() val job = async { createWorker(channel) } for(i in 1..maxCount) { var random_uuid = UUID.randomUUID().toString() channel.send(random_uuid) } channel.close() job.await() } } 간단 설명 이미지 이것을 토대로 10000개의 파일을 생성하는 테스트를 해본결과…\n결과창    방식 시간표     싱글스레드 68.953s   멀티스레드 46.261s    이렇게 꽤 차이 나는 결과를 알게되었다.\n",
   "wordCount" : "360",
@@ -345,8 +345,7 @@ class AsyncFileIO(
   </div>
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://devsanso.github.io/tags/tip/">tip</a></li>
-      <li><a href="https://devsanso.github.io/tags/%EC%A0%95%EB%A6%AC%EB%85%B8%ED%8A%B8/">정리노트</a></li>
+      <li><a href="https://devsanso.github.io/tags/%EC%8B%A4%ED%97%98/">실험</a></li>
       <li><a href="https://devsanso.github.io/tags/kotlin/">kotlin</a></li>
     </ul>
   </footer>

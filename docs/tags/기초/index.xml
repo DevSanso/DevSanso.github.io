@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>정리노트 on Sunken Ahn Blog</title>
-    <link>https://devsanso.github.io/tags/%EC%A0%95%EB%A6%AC%EB%85%B8%ED%8A%B8/</link>
-    <description>Recent content in 정리노트 on Sunken Ahn Blog</description>
+    <title>기초 on Sunken Ahn Blog</title>
+    <link>https://devsanso.github.io/tags/%EA%B8%B0%EC%B4%88/</link>
+    <description>Recent content in 기초 on Sunken Ahn Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>kr-ko</language>
-    <lastBuildDate>Thu, 04 Nov 2021 22:14:44 +0900</lastBuildDate><atom:link href="https://devsanso.github.io/tags/%EC%A0%95%EB%A6%AC%EB%85%B8%ED%8A%B8/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 04 Nov 2021 22:14:44 +0900</lastBuildDate><atom:link href="https://devsanso.github.io/tags/%EA%B8%B0%EC%B4%88/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>모듈 임포트</title>
       <link>https://devsanso.github.io/posts/rust/how_import_modules/</link>
