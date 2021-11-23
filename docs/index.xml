@@ -6,7 +6,19 @@
     <description>Recent content on Sunken Ahn Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>kr-ko</language>
-    <lastBuildDate>Fri, 19 Nov 2021 23:27:30 +0900</lastBuildDate><atom:link href="https://devsanso.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 23 Nov 2021 23:58:33 +0900</lastBuildDate><atom:link href="https://devsanso.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>코틀린 하면서 느낀 infix 유용함</title>
+      <link>https://devsanso.github.io/posts/kotlin/useful_infix_fun/</link>
+      <pubDate>Tue, 23 Nov 2021 23:58:33 +0900</pubDate>
+      
+      <guid>https://devsanso.github.io/posts/kotlin/useful_infix_fun/</guid>
+      <description>코틀린으로 spring 프로젝트를 코딩하고 있는데, 데이터베이스를 사용해야해서 JetBrains(코틀린 만든회사)에서 만든 exposed 라는 sql프레임워크를 사용하게 되었다.
+그렇게 해당 라이브러리로 테이블 객체를 만들고, select를 수행하는 함수에서 where 문을 추가해야 하는 상황에서 infix 함수를 사용하게 되었다.
+일단 예시로 평소에 나는 이렇게 코딩하고 있었다
+/* ... ... ... */ data class User : Table() (val name : String,val age : Int,/*..*/) data class NameAndAge(/*..*/) fun selectUser() : List&amp;lt;NameAndAge&amp;gt; { //select 안에 where 관련 기능이 추가된다.</description>
+    </item>
+    
     <item>
       <title>c#10에서 추가된거</title>
       <link>https://devsanso.github.io/posts/csharp/new_csharp_10/</link>
