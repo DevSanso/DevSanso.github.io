@@ -1,7 +1,7 @@
 ---
 title: "코틀린 하면서 느낀 infix 유용함"
 date: 2021-11-23T23:58:33+09:00
-draft: true
+draft: false
 tags : [kotlin,정리노트,기초]
 ---
 
