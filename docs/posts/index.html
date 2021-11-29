@@ -148,6 +148,19 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>리시버 있는 함수 리터럴 유용한 사용</h2>
+  </header>
+  <section class="entry-content">
+    <p>계기 코틀린으로 코딩하는도중 예전에 쓰던 exposed 프레임워크의 코드줄에서 궁금증이 생겼는데.
+import org.jetbrains.exposed.sql.* import org.jetbrains.exposed.sql.transactions.transaction object Users : Table() { ... val name = varchar(&#34;name&#34;, length = 50) ... } transaction { .... .... Users.update({ Users.name eq &#34;city&#34;}) { it[name] = &#34;bob&#34; } } 이라는 코드줄이 있다고 할때, User 싱글톤 객체에 name에 infix 함수인 eq가 있다. 그럼 이걸 update함수 밖에서 써도 될까에서 시작해서 그렇게 작성해서 컴파일 해봤는데.
+import org.jetbrains.exposed.sql.* import org.jetbrains.exposed.sql.transactions.transaction object Users : Table() { ....</p>
+  </section>
+  <footer class="entry-footer">November 25, 2021</footer>
+  <a class="entry-link" aria-label="post link to 리시버 있는 함수 리터럴 유용한 사용" href="https://devsanso.github.io/posts/kotlin/using_function_literals_with_receiver/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>코틀린 하면서 느낀 infix 유용함</h2>
   </header>
   <section class="entry-content">
@@ -261,20 +274,11 @@ julia 언어 해당 언어에 대해 알아본 결과 수치해석에 사용하�
   <footer class="entry-footer">July 23, 2021</footer>
   <a class="entry-link" aria-label="post link to julia-&#39;julia 이란?&#39;" href="https://devsanso.github.io/posts/julia/0-intro/"></a>
 </article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>비교연산자가 포함된 if문을 비트연산으로 변화</h2>
-  </header>
-  <section class="entry-content">
-    <p>여가시간에 프로그래밍 정보를 얻어보고자 stackoverflow에서 상당히 좋은글을 보게 되었다.
-보통 코딩을 할때 “n개의 정수배열에서 y 보다 작거나 같은 Xn을 서로 합하여라” 라는 문제가 있을경우 보통 이렇게 코드를 작성하게 된다.
-//cpp 예시코드 for(int i;i&lt;=array_size;i&#43;&#43;) { int x = array[i]; if(x &lt;= y) { sum &#43;= x; } } 이렇게 해당 소스코드를 작성할것이다.
-해당 소스코드는 1개의 if,한개의 비교연산자를 이용하여 x가 y보다 작거나 같으면, sum 변수에 더한다 라는 간단한 기능이 구현되어있다,그럼 여기서 어떻게 해야 성능 최적화가 되는건가?...</p>
-  </section>
-  <footer class="entry-footer">July 21, 2021</footer>
-  <a class="entry-link" aria-label="post link to 비교연산자가 포함된 if문을 비트연산으로 변화" href="https://devsanso.github.io/posts/optimizing_the_if_less_operator/"></a>
-</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="next" href="https://devsanso.github.io/posts/page/2/">Next Page »</a>
+  </nav>
+</footer>
     </main>
     <footer class="footer">
     <span>&copy; 2021 <a href="https://devsanso.github.io/">Sunken Ahn Blog</a></span>

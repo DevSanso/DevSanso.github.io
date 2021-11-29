@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>kotlin | Sunken Ahn Blog</title>
+<title>Posts | Sunken Ahn Blog</title>
 <meta name="keywords" content="" />
 <meta name="description" content="">
 <meta name="author" content="">
-<link rel="canonical" href="https://devsanso.github.io/tags/kotlin/" />
+<link rel="canonical" href="https://devsanso.github.io/posts/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.35cd0f65a15cafa92372b8313deef5960aae04b90ad722f2bbf509eb0468137e.css" integrity="sha256-Nc0PZaFcr6kjcrgxPe71lgquBLkK1yLyu/UJ6wRoE34=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://devsanso.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://devsanso.github.io/favicon-16x16.png">
@@ -19,16 +19,31 @@
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <meta name="generator" content="Hugo 0.80.0" />
-<link rel="alternate" type="application/rss+xml" href="https://devsanso.github.io/tags/kotlin/index.xml">
-<meta property="og:title" content="kotlin" />
+<link rel="alternate" type="application/rss+xml" href="https://devsanso.github.io/posts/index.xml">
+<meta property="og:title" content="Posts" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://devsanso.github.io/tags/kotlin/" />
+<meta property="og:url" content="https://devsanso.github.io/posts/" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="kotlin"/>
+<meta name="twitter:title" content="Posts"/>
 <meta name="twitter:description" content=""/>
 
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://devsanso.github.io/posts/"
+    }
+  ]
+}
+</script>
 </head>
 
 <body class="list" id="top">
@@ -128,48 +143,27 @@
 </header>
 <main class="main"> 
 <header class="page-header">
-  <h1>kotlin</h1>
+  <h1>Posts</h1>
 </header>
 
-<article class="post-entry tag-entry"> 
+<article class="post-entry"> 
   <header class="entry-header">
-    <h2>리시버 있는 함수 리터럴 유용한 사용</h2>
+    <h2>비교연산자가 포함된 if문을 비트연산으로 변화</h2>
   </header>
   <section class="entry-content">
-    <p>계기 코틀린으로 코딩하는도중 예전에 쓰던 exposed 프레임워크의 코드줄에서 궁금증이 생겼는데.
-import org.jetbrains.exposed.sql.* import org.jetbrains.exposed.sql.transactions.transaction object Users : Table() { ... val name = varchar(&#34;name&#34;, length = 50) ... } transaction { .... .... Users.update({ Users.name eq &#34;city&#34;}) { it[name] = &#34;bob&#34; } } 이라는 코드줄이 있다고 할때, User 싱글톤 객체에 name에 infix 함수인 eq가 있다. 그럼 이걸 update함수 밖에서 써도 될까에서 시작해서 그렇게 작성해서 컴파일 해봤는데.
-import org.jetbrains.exposed.sql.* import org.jetbrains.exposed.sql.transactions.transaction object Users : Table() { ....</p>
+    <p>여가시간에 프로그래밍 정보를 얻어보고자 stackoverflow에서 상당히 좋은글을 보게 되었다.
+보통 코딩을 할때 “n개의 정수배열에서 y 보다 작거나 같은 Xn을 서로 합하여라” 라는 문제가 있을경우 보통 이렇게 코드를 작성하게 된다.
+//cpp 예시코드 for(int i;i&lt;=array_size;i&#43;&#43;) { int x = array[i]; if(x &lt;= y) { sum &#43;= x; } } 이렇게 해당 소스코드를 작성할것이다.
+해당 소스코드는 1개의 if,한개의 비교연산자를 이용하여 x가 y보다 작거나 같으면, sum 변수에 더한다 라는 간단한 기능이 구현되어있다,그럼 여기서 어떻게 해야 성능 최적화가 되는건가?...</p>
   </section>
-  <footer class="entry-footer">November 25, 2021</footer>
-  <a class="entry-link" aria-label="post link to 리시버 있는 함수 리터럴 유용한 사용" href="https://devsanso.github.io/posts/kotlin/using_function_literals_with_receiver/"></a>
+  <footer class="entry-footer">July 21, 2021</footer>
+  <a class="entry-link" aria-label="post link to 비교연산자가 포함된 if문을 비트연산으로 변화" href="https://devsanso.github.io/posts/optimizing_the_if_less_operator/"></a>
 </article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2>코틀린 하면서 느낀 infix 유용함</h2>
-  </header>
-  <section class="entry-content">
-    <p>코틀린으로 spring 프로젝트를 코딩하고 있는데, 데이터베이스를 사용해야해서 JetBrains(코틀린 만든회사)에서 만든 exposed 라는 sql프레임워크를 사용하게 되었다.
-그렇게 해당 라이브러리로 테이블 객체를 만들고, select를 수행하는 함수에서 where 문을 추가해야 하는 상황에서 infix 함수를 사용하게 되었다.
-일단 예시로 평소에 나는 이렇게 코딩하고 있었다
-/* ... ... ... */ data class User : Table() (val name : String,val age : Int,/*..*/) data class NameAndAge(/*..*/) fun selectUser() : List&lt;NameAndAge&gt; { //select 안에 where 관련 기능이 추가된다....</p>
-  </section>
-  <footer class="entry-footer">November 23, 2021</footer>
-  <a class="entry-link" aria-label="post link to 코틀린 하면서 느낀 infix 유용함" href="https://devsanso.github.io/posts/kotlin/useful_infix_fun/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2>싱글,멀티 스레드 파일 입출력 성능 </h2>
-  </header>
-  <section class="entry-content">
-    <p>프로그래밍 하는 도중 파일을 입출력 코드를 작성하는 상황이 있었는데, 여기서 “파일 입출력을 싱글 스레드 그리고 멀티 스레드중 어느것이 나을까?“라고 궁금중이 생겨서, 따로 코드를 작성하고 테스트했던것을 적어볼려고 한다.
-우선 나는 어느것이 성능이 좋을지 생각하면서 어떤 프로그램 요구서를 생각하고, 그것에 따라서 작성해보았다.
-프로그램 계획 요구 : 랜덤 해쉬값을 생성후, 해당값을 파일이름 그리고 파일내용으로 작성하여 특정폴더에 저장한다.  프로그램은 싱글,멀티스레드 선택값,폴더경로 그리고 파일 생성 갯수값을 인수로 입력받는다 해쉬값을 랜덤으로 생성한다 해당값으로 파일명으로 해서 생성후, 해당 파일에 해당값을 저장 이 행동을 생성 갯수값만큼 반복한다 반복이 완료후의 시간을 측정하고, 출력한다 프로그램 종료  그리고 해당 요구서를 토대로 코틀린으로 작성해보았다....</p>
-  </section>
-  <footer class="entry-footer">October 7, 2021</footer>
-  <a class="entry-link" aria-label="post link to 싱글,멀티 스레드 파일 입출력 성능 " href="https://devsanso.github.io/posts/kotlin/thread_file_io_performance/"></a>
-</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="https://devsanso.github.io/posts/">« Prev Page</a>
+  </nav>
+</footer>
     </main>
     <footer class="footer">
     <span>&copy; 2021 <a href="https://devsanso.github.io/">Sunken Ahn Blog</a></span>
