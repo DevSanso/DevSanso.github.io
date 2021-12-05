@@ -6,7 +6,17 @@
     <description>Recent content on Sunken Ahn Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>kr-ko</language>
-    <lastBuildDate>Thu, 25 Nov 2021 22:53:23 +0900</lastBuildDate><atom:link href="https://devsanso.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 05 Dec 2021 14:24:22 +0900</lastBuildDate><atom:link href="https://devsanso.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>몇몇 타입이 구조체의 맴버변수를 리턴 못하는 이유</title>
+      <link>https://devsanso.github.io/posts/rust/cant_move_refer_structure/</link>
+      <pubDate>Sun, 05 Dec 2021 14:24:22 +0900</pubDate>
+      
+      <guid>https://devsanso.github.io/posts/rust/cant_move_refer_structure/</guid>
+      <description>코딩하던 도중에, 구조체의 변수값을 리턴하는 함수를 만들던 도중에 있던일을 적을라고 한다. 일단 구조체에 있는 문자열 변수를 읽는 함수를 제작했다 하자.
+struct A { num : u32, s : String } impl A { fn get_string(&amp;amp;self) -&amp;gt; String { self.s } /***/ } fn main() { let object = A{num : 0,s : String::from(&amp;#34;&amp;#34;)}; let _copyS = object.get_string(); /***/ } 다른 언어에서 작성하던것처럼 문자열의 getter를 함수로 만들어 놓고 컴파일 해보니 이런 에러가 뜬다.</description>
+    </item>
+    
     <item>
       <title>리시버 있는 함수 리터럴 유용한 사용</title>
       <link>https://devsanso.github.io/posts/kotlin/using_function_literals_with_receiver/</link>

@@ -133,6 +133,18 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2>몇몇 타입이 구조체의 맴버변수를 리턴 못하는 이유</h2>
+  </header>
+  <section class="entry-content">
+    <p>코딩하던 도중에, 구조체의 변수값을 리턴하는 함수를 만들던 도중에 있던일을 적을라고 한다. 일단 구조체에 있는 문자열 변수를 읽는 함수를 제작했다 하자.
+struct A { num : u32, s : String } impl A { fn get_string(&amp;self) -&gt; String { self.s } /***/ } fn main() { let object = A{num : 0,s : String::from(&#34;&#34;)}; let _copyS = object.get_string(); /***/ } 다른 언어에서 작성하던것처럼 문자열의 getter를 함수로 만들어 놓고 컴파일 해보니 이런 에러가 뜬다....</p>
+  </section>
+  <footer class="entry-footer">December 5, 2021</footer>
+  <a class="entry-link" aria-label="post link to 몇몇 타입이 구조체의 맴버변수를 리턴 못하는 이유" href="https://devsanso.github.io/posts/rust/cant_move_refer_structure/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2>모듈 임포트</h2>
   </header>
   <section class="entry-content">

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>몇몇 타입이 구조체의 맴버변수를 리턴 못하는 이유 | Sunken Ahn Blog</title>
+<meta name="keywords" content="rust, 정리노트, 기초" />
+<meta name="description" content="코딩하던 도중에, 구조체의 변수값을 리턴하는 함수를 만들던 도중에 있던일을 적을라고 한다. 일단 구조체에 있는 문자열 변수를 읽는 함수를 제작했다 하자.
+struct A { num : u32, s : String } impl A { fn get_string(&amp;self) -&gt; String { self.s } /***/ } fn main() { let object = A{num : 0,s : String::from(&#34;&#34;)}; let _copyS = object.get_string(); /***/ } 다른 언어에서 작성하던것처럼 문자열의 getter를 함수로 만들어 놓고 컴파일 해보니 이런 에러가 뜬다.">
+<meta name="author" content="">
+<link rel="canonical" href="https://devsanso.github.io/posts/rust/cant_move_refer_structure/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.35cd0f65a15cafa92372b8313deef5960aae04b90ad722f2bbf509eb0468137e.css" integrity="sha256-Nc0PZaFcr6kjcrgxPe71lgquBLkK1yLyu/UJ6wRoE34=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://devsanso.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://devsanso.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://devsanso.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://devsanso.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://devsanso.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.80.0" />
+<meta property="og:title" content="몇몇 타입이 구조체의 맴버변수를 리턴 못하는 이유" />
+<meta property="og:description" content="코딩하던 도중에, 구조체의 변수값을 리턴하는 함수를 만들던 도중에 있던일을 적을라고 한다. 일단 구조체에 있는 문자열 변수를 읽는 함수를 제작했다 하자.
+struct A { num : u32, s : String } impl A { fn get_string(&amp;self) -&gt; String { self.s } /***/ } fn main() { let object = A{num : 0,s : String::from(&#34;&#34;)}; let _copyS = object.get_string(); /***/ } 다른 언어에서 작성하던것처럼 문자열의 getter를 함수로 만들어 놓고 컴파일 해보니 이런 에러가 뜬다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://devsanso.github.io/posts/rust/cant_move_refer_structure/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-12-05T14:24:22&#43;09:00" />
+<meta property="article:modified_time" content="2021-12-05T14:24:22&#43;09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="몇몇 타입이 구조체의 맴버변수를 리턴 못하는 이유"/>
+<meta name="twitter:description" content="코딩하던 도중에, 구조체의 변수값을 리턴하는 함수를 만들던 도중에 있던일을 적을라고 한다. 일단 구조체에 있는 문자열 변수를 읽는 함수를 제작했다 하자.
+struct A { num : u32, s : String } impl A { fn get_string(&amp;self) -&gt; String { self.s } /***/ } fn main() { let object = A{num : 0,s : String::from(&#34;&#34;)}; let _copyS = object.get_string(); /***/ } 다른 언어에서 작성하던것처럼 문자열의 getter를 함수로 만들어 놓고 컴파일 해보니 이런 에러가 뜬다."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://devsanso.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "몇몇 타입이 구조체의 맴버변수를 리턴 못하는 이유",
+      "item": "https://devsanso.github.io/posts/rust/cant_move_refer_structure/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "몇몇 타입이 구조체의 맴버변수를 리턴 못하는 이유",
+  "name": "몇몇 타입이 구조체의 맴버변수를 리턴 못하는 이유",
+  "description": "코딩하던 도중에, 구조체의 변수값을 리턴하는 함수를 만들던 도중에 있던일을 적을라고 한다. 일단 구조체에 있는 문자열 변수를 읽는 함수를 제작했다 하자.\nstruct A { num : u32, s : String } impl A { fn get_string(\u0026amp;self) -\u0026gt; String { self.s } /***/ } fn main() { let object = A{num : 0,s : String::from(\u0026#34;\u0026#34;)}; let _copyS = object.get_string(); /***/ } 다른 언어에서 작성하던것처럼 문자열의 getter를 함수로 만들어 놓고 컴파일 해보니 이런 에러가 뜬다.",
+  "keywords": [
+    "rust", "정리노트", "기초"
+  ],
+  "articleBody": "코딩하던 도중에, 구조체의 변수값을 리턴하는 함수를 만들던 도중에 있던일을 적을라고 한다. 일단 구조체에 있는 문자열 변수를 읽는 함수를 제작했다 하자.\nstruct A { num : u32, s : String } impl A { fn get_string(\u0026self) - String { self.s } /***/ } fn main() { let object = A{num : 0,s : String::from(\"\")}; let _copyS = object.get_string(); /***/ } 다른 언어에서 작성하던것처럼 문자열의 getter를 함수로 만들어 놓고 컴파일 해보니 이런 에러가 뜬다.\nCompiling playground v0.0.1 (/playground) error[E0507]: cannot move out of `self.s` which is behind a shared reference -- src/main.rs:7:9 | 7 | self.s | ^^^^^^ move occurs because `self.s` has type `String`, which does not implement the `Copy` trait For more information about this error, try `rustc --explain E0507`. error: could not compile `playground` due to previous error 아 러스트는 대입이 아닌 이동이니 그런걸수 있겠다고 생각할수 있지만, 정수형으로 함수를 작성하면 정상적으로 작동하는걸 알수있다.\nstruct A { num : u32, s : String } impl A { fn get_u32(\u0026self) - u32 { self.num } /***/ } fn main() { let object = A{num : 0,s : String::from(\"\")}; let _copyS = object.get_u32(); /***/ } /* 경고창을 나오지만 컴파일 에러는 나오지 않는다. */ 그래서 찾아보니 Copy라고 복사하고 관련된 트레이드 인데, 해당 트레이드를 구현하는 타입들은 대입연산자(=)에서 묵시적으로 변수 이동이 아닌 변수 복사가 된다고 한다.\n즉 u32은 기본적으로 copy트레이드가 구현되 있지만, String 타입은 해당 트레이드 구현이 안되있다, 그래서 getter 함수에서는 값 이동으로 작동하는데, self가 참조형이여서 이동이 안된다고 컴파일 에러가 나는것같다. 그럼 참조형을 안쓰면 되는거 하면?, getter함수 호출후에 구조체 사용이 불가능한다는 문제가 있다.\nstruct A { num : u32, s : String } impl A { fn get_string(self) - String { self.s } /***/ } fn main() { let object = A{num : 0,s : String::from(\"\")}; let _copyS = object.get_string(); println!(\"{}\",object.get_string()) /***/ } /* output Compiling playground v0.0.1 (/playground) error[E0382]: use of moved value: `object` -- src/main.rs:15:19 | 13 | let object = A{num : 0,s : String::from(\"\")}; | ------ move occurs because `object` has type `A`, which does not implement the `Copy` trait 14 | let _copyS = object.get_string(); | ------------ `object` moved due to this method call 15 | println!(\"{}\",object.get_string()) | ^^^^^^ value used here after move | note: this function takes ownership of the receiver `self`, which moves `object` -- src/main.rs:6:19 | 6 | fn get_string(self) - String { | ^^^^ For more information about this error, try `rustc --explain E0382`. error: could not compile `playground` due to previous error */ 그래서 해결법을 몇시간들어 찾아봤는데, 문자열 타입이 Clone 트레이드(Copy트레이드랑 비슷한 기능) 구현을 지원한다고 한다. 즉 함수에서 clone()를 호출하면 해결된다.\nstruct A { num : u32, s : String } impl A { fn get_string(\u0026self) - u32 { self.s.clone() } /***/ } ",
+  "wordCount" : "439",
+  "inLanguage": "en",
+  "datePublished": "2021-12-05T14:24:22+09:00",
+  "dateModified": "2021-12-05T14:24:22+09:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://devsanso.github.io/posts/rust/cant_move_refer_structure/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Sunken Ahn Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://devsanso.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: #1d1e20;
+                --entry: #2e2e33;
+                --primary: rgba(255, 255, 255, 0.84);
+                --secondary: rgba(255, 255, 255, 0.56);
+                --tertiary: rgba(255, 255, 255, 0.16);
+                --content: rgba(255, 255, 255, 0.74);
+                --hljs-bg: #2e2e33;
+                --code-bg: #37383e;
+                --border: #333;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://devsanso.github.io/" accesskey="h" title="Sunken Ahn Blog (Alt + H)">Sunken Ahn Blog</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://devsanso.github.io/about/" title="about">
+                    <span>about</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://devsanso.github.io/archives/" title="archives">
+                    <span>archives</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://devsanso.github.io/tags/" title="tags">
+                    <span>tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      몇몇 타입이 구조체의 맴버변수를 리턴 못하는 이유
+    </h1>
+    <div class="post-meta">December 5, 2021
+</div>
+  </header> 
+  <div class="post-content"><p>코딩하던 도중에, 구조체의 변수값을 리턴하는 함수를 만들던 도중에 있던일을 적을라고 한다.
+일단 구조체에 있는 문자열 변수를 읽는 함수를 제작했다 하자.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust">
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">A</span> {
+    num : <span style="color:#66d9ef">u32</span>,
+    s : String
+}
+<span style="color:#66d9ef">impl</span> A {
+    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">get_string</span>(<span style="color:#f92672">&amp;</span>self) -&gt; String {
+        self.s
+    }
+<span style="color:#75715e">/***/</span>
+}
+
+<span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#66d9ef">let</span> object <span style="color:#f92672">=</span> A{num : <span style="color:#ae81ff">0</span>,s : String::from(<span style="color:#e6db74">&#34;&#34;</span>)};
+    <span style="color:#66d9ef">let</span> _copyS <span style="color:#f92672">=</span> object.get_string();
+<span style="color:#75715e">/***/</span>
+}
+
+</code></pre></div><p>다른 언어에서 작성하던것처럼 문자열의 getter를 함수로 만들어 놓고 컴파일 해보니 이런 에러가 뜬다.</p>
+<pre><code>Compiling playground v0.0.1 (/playground)
+error[E0507]: cannot move out of `self.s` which is behind a shared reference
+ --&gt; src/main.rs:7:9
+  |
+7 |         self.s
+  |         ^^^^^^ move occurs because `self.s` has type `String`, which does not implement the `Copy` trait
+
+For more information about this error, try `rustc --explain E0507`.
+error: could not compile `playground` due to previous error
+</code></pre><p>아 러스트는 대입이 아닌 이동이니 그런걸수 있겠다고 생각할수 있지만, 정수형으로 함수를 작성하면 정상적으로 작동하는걸 알수있다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">A</span> {
+    num : <span style="color:#66d9ef">u32</span>,
+    s : String
+}
+<span style="color:#66d9ef">impl</span> A {
+    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">get_u32</span>(<span style="color:#f92672">&amp;</span>self) -&gt; <span style="color:#66d9ef">u32</span> {
+        self.num
+    }
+<span style="color:#75715e">/***/</span>
+}
+
+<span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#66d9ef">let</span> object <span style="color:#f92672">=</span> A{num : <span style="color:#ae81ff">0</span>,s : String::from(<span style="color:#e6db74">&#34;&#34;</span>)};
+    <span style="color:#66d9ef">let</span> _copyS <span style="color:#f92672">=</span> object.get_u32();
+<span style="color:#75715e">/***/</span>
+}
+<span style="color:#75715e">/*
+</span><span style="color:#75715e">경고창을 나오지만 컴파일 에러는 나오지 않는다.
+</span><span style="color:#75715e">*/</span>
+</code></pre></div><p>그래서 찾아보니 Copy라고 복사하고 관련된 트레이드 인데, 해당 트레이드를 구현하는 타입들은
+대입연산자(=)에서 묵시적으로 변수 이동이 아닌 변수 복사가 된다고 한다.<br>
+즉 u32은 기본적으로 copy트레이드가 구현되 있지만, String 타입은 해당 트레이드 구현이 안되있다, 그래서
+getter 함수에서는 값 이동으로 작동하는데, self가 참조형이여서 이동이 안된다고 컴파일 에러가 나는것같다.
+그럼 참조형을 안쓰면 되는거 하면?, getter함수 호출후에 구조체 사용이 불가능한다는 문제가 있다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">A</span> {
+    num : <span style="color:#66d9ef">u32</span>,
+    s : String
+}
+<span style="color:#66d9ef">impl</span> A {
+    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">get_string</span>(self) -&gt; String {
+        self.s
+    }
+<span style="color:#75715e">/***/</span>
+}
+
+<span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+ <span style="color:#66d9ef">let</span> object <span style="color:#f92672">=</span> A{num : <span style="color:#ae81ff">0</span>,s : String::from(<span style="color:#e6db74">&#34;&#34;</span>)};
+    <span style="color:#66d9ef">let</span> _copyS <span style="color:#f92672">=</span> object.get_string();
+    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;{}&#34;</span>,object.get_string())
+<span style="color:#75715e">/***/</span>
+}
+<span style="color:#75715e">/* output
+</span><span style="color:#75715e">Compiling playground v0.0.1 (/playground)
+</span><span style="color:#75715e">error[E0382]: use of moved value: `object`
+</span><span style="color:#75715e">  --&gt; src/main.rs:15:19
+</span><span style="color:#75715e">   |
+</span><span style="color:#75715e">13 |  let object = A{num : 0,s : String::from(&#34;&#34;)};
+</span><span style="color:#75715e">   |      ------ move occurs because `object` has type `A`, which does not implement the `Copy` trait
+</span><span style="color:#75715e">14 |     let _copyS = object.get_string();
+</span><span style="color:#75715e">   |                         ------------ `object` moved due to this method call
+</span><span style="color:#75715e">15 |     println!(&#34;{}&#34;,object.get_string())
+</span><span style="color:#75715e">   |                   ^^^^^^ value used here after move
+</span><span style="color:#75715e">   |
+</span><span style="color:#75715e">note: this function takes ownership of the receiver `self`, which moves `object`
+</span><span style="color:#75715e">  --&gt; src/main.rs:6:19
+</span><span style="color:#75715e">   |
+</span><span style="color:#75715e">6  |     fn get_string(self) -&gt; String {
+</span><span style="color:#75715e">   |                   ^^^^
+</span><span style="color:#75715e">
+</span><span style="color:#75715e">For more information about this error, try `rustc --explain E0382`.
+</span><span style="color:#75715e">error: could not compile `playground` due to previous error
+</span><span style="color:#75715e">*/</span>
+</code></pre></div><p>그래서 해결법을 몇시간들어 찾아봤는데, 문자열 타입이 Clone 트레이드(Copy트레이드랑 비슷한 기능) 구현을 지원한다고 한다.
+즉 함수에서 clone()를 호출하면 해결된다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">A</span> {
+    num : <span style="color:#66d9ef">u32</span>,
+    s : String
+}
+<span style="color:#66d9ef">impl</span> A {
+    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">get_string</span>(<span style="color:#f92672">&amp;</span>self) -&gt; <span style="color:#66d9ef">u32</span> {
+        self.s.clone()
+    }
+<span style="color:#75715e">/***/</span>
+}
+
+</code></pre></div>
+
+  </div>
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://devsanso.github.io/tags/rust/">rust</a></li>
+      <li><a href="https://devsanso.github.io/tags/%EC%A0%95%EB%A6%AC%EB%85%B8%ED%8A%B8/">정리노트</a></li>
+      <li><a href="https://devsanso.github.io/tags/%EA%B8%B0%EC%B4%88/">기초</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    <footer class="footer">
+    <span>&copy; 2021 <a href="https://devsanso.github.io/">Sunken Ahn Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
