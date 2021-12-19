@@ -6,7 +6,18 @@
     <description>Recent content in 정리노트 on Sunken Ahn Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>kr-ko</language>
-    <lastBuildDate>Sun, 05 Dec 2021 14:24:22 +0900</lastBuildDate><atom:link href="https://devsanso.github.io/tags/%EC%A0%95%EB%A6%AC%EB%85%B8%ED%8A%B8/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 19 Dec 2021 16:47:14 +0900</lastBuildDate><atom:link href="https://devsanso.github.io/tags/%EC%A0%95%EB%A6%AC%EB%85%B8%ED%8A%B8/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>factory 키워드를 사용하여 하나의 생성자만 있는 클래스는 확장이 안된다.</title>
+      <link>https://devsanso.github.io/posts/dart/class_with_the_factory_keyword_cant_extends/</link>
+      <pubDate>Sun, 19 Dec 2021 16:47:14 +0900</pubDate>
+      
+      <guid>https://devsanso.github.io/posts/dart/class_with_the_factory_keyword_cant_extends/</guid>
+      <description>최근 플러터를 통하여 앱 프로젝트를 만들고 코딩하고있을때 있던 일이였다.
+어플에 http통신을 구현할려고 하는데, dart언어에 기본적으로 httpclient 객체가 지원하고 있었다. 그래서 해당 객체의 자식클래스를 만들어서 코딩할려고 할려고 하니 갑자기 에러창이 뜨게 되었다.
+import &amp;#34;dart:io&amp;#34;; class Custom extends HttpClient {/*****/} //error message /*The class &amp;#39;Custom&amp;#39; cannot extend &amp;#39;HttpClient&amp;#39; because &amp;#39;HttpClient&amp;#39; only has factory constructors (no generative constructors), and &amp;#39;Custom&amp;#39; has at least one generative constructor. Try implementing the class instead, adding a generative (not factory) constructor to the superclass Custom, or a factory constructor to the subclass.</description>
+    </item>
+    
     <item>
       <title>몇몇 타입이 구조체의 맴버변수를 리턴 못하는 이유</title>
       <link>https://devsanso.github.io/posts/rust/cant_move_refer_structure/</link>
